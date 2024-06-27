@@ -1,5 +1,5 @@
 import MainBody from './MainBody'
-import NavBar from './components/NavBar'
+import NavBar from './components/NavBar/NavBar.tsx'
 
 function App() {
 

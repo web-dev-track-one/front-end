@@ -1,0 +1,16 @@
+.toolbar {
+    height: 175px;
+    background-color: #1E3765;
+}
+
+.box {
+    background-color: #1E3765;
+}
+
+.link_boxes {
+    background-color: #001E42;
+    width: 25%;
+    text-align: center;
+    margin-left: 1px;
+    margin-right: 1px;
+}
