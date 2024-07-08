@@ -26,7 +26,7 @@ const LowerNav = () => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const page = (e.target as HTMLElement).innerText;
-    navigate(`/${page}`);
+    navigate(`/${page.replace(/\s+/g, '-').toLowerCase()}`);
   };
 
   // #007FA3

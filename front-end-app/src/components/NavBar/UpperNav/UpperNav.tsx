@@ -9,7 +9,7 @@ const UpperNav = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/Home');
+        navigate('/home');
     }
 
     return (
