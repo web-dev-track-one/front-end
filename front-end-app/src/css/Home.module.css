@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  padding: 20px;
+  align-items: stretch;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 45%;
+  padding: 20px;
+  height: 50vh;
+}
+
+.card h2 {
+  background-color: #3a6ea5;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin: -20px -20px 10px -20px;
+  text-align: center;
+}
+
+.card1 {
+  width: 30%;
+}
+.card2 {
+  width: 60%;
+}
+.card p {
+  margin: 0;
+  padding: 10px;
+  color: #333;
+  font-size: calc(1vw + 1vh);
+}
