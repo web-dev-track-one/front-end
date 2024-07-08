@@ -26,7 +26,7 @@ const LowerNav = () => {
       >
         {pages.map((page) => (
           <Box className={styles.link_boxes} onClick={handleClick}>
-            <p>{page}</p>
+            <p className={styles.link_text}>{page.toUpperCase()}</p>
           </Box>
         ))}
       </Box>
