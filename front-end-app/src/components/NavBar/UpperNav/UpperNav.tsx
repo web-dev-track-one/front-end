@@ -20,6 +20,7 @@ const UpperNav = () => {
                     component="img"
                     sx={{
                         height: 100,
+                        cursor: 'pointer',
                     }}
                     alt="uoft_logo"
                     src={UoftLogo}
