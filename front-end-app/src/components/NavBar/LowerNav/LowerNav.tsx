@@ -3,7 +3,13 @@ import { Box } from "@mui/material";
 import styles from "../NavBar.module.css";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Announcements", "Due Dates", "Meet the Team", "Contact Us"];
+const pages = [
+  "Home",
+  "Announcements",
+  "Due Dates",
+  "Meet the Team",
+  "Contact Us",
+];
 
 const LowerNav = () => {
   const navigate = useNavigate();
