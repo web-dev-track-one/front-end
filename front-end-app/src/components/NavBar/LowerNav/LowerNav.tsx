@@ -4,7 +4,6 @@ import styles from "../NavBar.module.css";
 import { useNavigate } from "react-router-dom";
 
 const pages = [
-  "Home",
   "Announcements",
   "Due Dates",
   "Meet the Team",
