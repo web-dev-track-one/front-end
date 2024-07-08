@@ -24,8 +24,8 @@ const LowerNav = () => {
 
     const navigate = useNavigate();
 
-  const handleClick = (e: any) => {
-    const page = e.target.innerText;
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const page = (e.target as HTMLElement).innerText;
     navigate(`/${page}`);
   };
 
