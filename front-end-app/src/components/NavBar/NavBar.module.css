@@ -8,9 +8,16 @@
 }
 
 .link_boxes {
-    background-color: #001E42;
+    /*background-color: #001E42;*/
     width: 25%;
     text-align: center;
     margin-left: 1px;
     margin-right: 1px;
+    cursor: pointer;
+}
+
+.link_text {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 100;
 }
