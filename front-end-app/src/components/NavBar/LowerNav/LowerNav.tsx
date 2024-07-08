@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {useState} from "react";
 
 const pages = [
-  "Announcements",
+  "Events",
   "Due Dates",
   "Meet the Team",
   "Contact Us",
