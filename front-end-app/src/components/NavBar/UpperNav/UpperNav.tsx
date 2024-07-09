@@ -13,7 +13,7 @@ const UpperNav = () => {
     }
 
     return (
-        <AppBar position="sticky">
+        <AppBar position='static'>
             <Toolbar className={styles.toolbar}>
                 <Box
                     onClick={handleClick}
