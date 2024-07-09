@@ -33,7 +33,7 @@ const LowerNav = () => {
   // #007FA3
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="static">
       <Box
         sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
         className={styles.box}
