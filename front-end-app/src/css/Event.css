@@ -1,0 +1,55 @@
+/* Announcement.css */
+.event {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0px;
+}
+
+.event-body {
+  padding: 4px 0;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  position: relative;
+}
+
+.event-text {
+  margin-right: 16px;
+  width: 60%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: larger;
+}
+
+.event-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%; /* Adjusted to a percentage of the parent container for consistency */
+  max-width: none; /* Remove the max-width or adjust as necessary */
+}
+
+.event-image img {
+  max-height: 45vh;
+  height: auto; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures the image covers the entire container without stretching */
+}
+
+.event-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  font-size: 0.9em;
+  color: #666;
+}
