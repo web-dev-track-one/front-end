@@ -1,6 +1,7 @@
 import Home from "./components/Home";
-import Announcements from "./components/Announcements";
-import Events from "./components/Events";
+import Announcements from "./components/Pages/Announcements/Announcements";
+import DueDates from "./components/Pages/DueDates/DueDates";
+import Events from "./components/Pages/Events/Events";
 import { Route, Routes } from "react-router-dom";
 
 const MainBody = () => {
@@ -9,6 +10,7 @@ const MainBody = () => {
       <Route element={<Home />} path="/Home" />
       <Route element={<Announcements />} path="/Announcements" />
       <Route element={<Events />} path="/Events" />
+      <Route element={<DueDates />} path="/due-dates" />
     </Routes>
   );
 };
