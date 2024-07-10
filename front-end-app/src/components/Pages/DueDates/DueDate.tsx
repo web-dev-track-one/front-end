@@ -1,4 +1,4 @@
-import "../../../css/DueDate.css";
+import "./DueDate.css";
 
 interface DueDateProps {
   title: string;

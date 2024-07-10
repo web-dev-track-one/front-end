@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../../../css/DueDates.css";
+import "./DueDates.css";
 import DueDate from "./DueDate";
 
 interface DueDateData {

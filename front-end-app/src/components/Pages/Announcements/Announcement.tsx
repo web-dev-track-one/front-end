@@ -1,4 +1,4 @@
-import "../../../css/Announcement.css";
+import "./Announcement.css";
 
 interface AnnouncementProps {
   title: string;

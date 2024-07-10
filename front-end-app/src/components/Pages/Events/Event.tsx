@@ -1,4 +1,4 @@
-import "../../../css/Event.css";
+import "./Event.css";
 
 interface EventProps {
   title: string;
