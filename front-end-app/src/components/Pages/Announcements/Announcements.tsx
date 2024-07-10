@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Announcement from "./Announcement";
-import "../../../css/Announcements.css";
+import "./Announcements.css";
 
 interface AnnouncementData {
   Title: string;

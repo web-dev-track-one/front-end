@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Event from "./Event";
-import "../../../css/Events.css";
+import "./Events.css";
 
 interface EventData {
   Title: string;
