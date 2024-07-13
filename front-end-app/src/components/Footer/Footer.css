@@ -1,0 +1,41 @@
+.footer {
+  background-color: #1e3765;
+  color: #ffffff;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  padding-left: 2cm;
+  align-items: center;
+}
+.footer-logo {
+  align-items: center;
+  display: flex;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Open Sans", sans-serif;
+}
+
+.footer-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.footer-info {
+  margin-bottom: 10px;
+}
+
+.footer-info p {
+  margin: 5px 0;
+}
+
+.footer-social a {
+  margin: 0 10px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+}
