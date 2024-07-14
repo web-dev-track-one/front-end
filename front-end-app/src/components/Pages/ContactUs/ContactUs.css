@@ -1,0 +1,42 @@
+/* ContactUs Component CSS */
+
+.contactus-container {
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    padding: 20px;
+    padding-top: 38px;
+    align-items: stretch;
+    background-color: #f0f0f0; /* Light grey background color */
+}
+
+.card {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    padding: 20px;
+    height: 50vh;
+}
+
+.card h1 {
+    background-color: #3f6ebf; /* Blue background color for the title */
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin: -20px -20px 10px -20px;
+    text-align: center;
+}
+
+.card p {
+    margin: 0;
+    padding: 10px;
+    color: #333;
+
+    font-size: calc(1vw + 1vh);
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    text-align: center;
+}
