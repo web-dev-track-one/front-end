@@ -1,0 +1,54 @@
+/* MeetTheTeam Component CSS */
+.meettheteam-container {
+  padding: 16px;
+  background-color: #f0f0f0; /* Light grey background color */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the container */
+}
+
+.meettheteam-container h1 {
+  text-align: center;
+  margin-bottom: 16px;
+  background-color: #3f6ebf; /* Blue background color for the title */
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* TeamMember Component CSS */
+
+.teammember {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+}
+
+.teammember-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.teammember-body {
+  padding: 8px 0;
+  word-wrap: break-word; /* This ensures long words are wrapped */
+  overflow-wrap: break-word; /* Also ensures proper word wrapping */
+}
+
+/*.teammember-footer {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  border-top: 1px solid #ccc;*/
+/*  padding-top: 8px;*/
+/*  font-size: 0.9em;*/
+/*  color: #666;*/
+/*}*/
