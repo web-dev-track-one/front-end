@@ -10,6 +10,7 @@ const pages = [
   "Due Dates",
   "Meet the Team",
   "Contact Us",
+  "Login",
 ];
 
 const LowerNav = () => {
