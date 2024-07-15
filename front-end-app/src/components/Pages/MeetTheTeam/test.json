@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "John Doe",
+    "Role": "Software Engineer",
+    "Bio": "John is a software engineer with 5 years of experience. He has worked on a variety of projects and has a strong background in web development. He is passionate about technology and is always looking for ways to improve his skills.",
+    "Image": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/06/The-Boys-A-Train.jpg"
+  },
+  {
+    "Name": "Jane Smith",
+    "Role": "Product Manager",
+    "Bio": "Jane is a product manager with 10 years of experience. She has worked on a variety of products and has a strong background in product management. She is passionate about building great products and is always looking for ways to improve the user experience.",
+    "Image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdNC7fYH2RKDy996JV3eimsQczOLPnz0gdzQ&s"
+  },
+  {
+    "Name": "Alice Johnson",
+    "Role": "Designer",
+    "Bio": "Alice is a designer with 5 years of experience. She has worked on a variety of projects and has a strong background in design. She is passionate about creating beautiful and user-friendly designs and is always looking for ways to improve her skills.",
+    "Image": "https://media.licdn.com/dms/image/D5603AQFLfJcW99Dirg/profile-displayphoto-shrink_200_200/0/1698117767352?e=2147483647&v=beta&t=Q4PeeO8-IvkoBxE9KgFoJSIOSRtW3l2f9eQw9vzUo6k"
+  }
+]
