@@ -1,27 +1,23 @@
 // src/components/Login.js
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useState, useEffect } from "react";
 import "./Login.css";
-
+import { useNavigate } from "react-router-dom";
 interface LoginResponse {
   token: string;
   message?: string;
 }
 
-const Login = () => {
+interface LoginProps {
+  setAuthToken: Dispatch<SetStateAction<string | null>>;
+}
+
+const Login = ({ setAuthToken }: LoginProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [showError, setShowError] = useState<string>("");
 
-  useEffect(() => {
-    if (message === "Login successful") {
-      const token = localStorage.getItem("token");
-      if (token) {
-        // Redirect or load admin page
-        window.location.href = "/admin";
-      }
-    }
-  }, [message]);
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,14 +33,20 @@ const Login = () => {
       if (response.ok) {
         // Save the token (e.g., in localStorage or a cookie)
         localStorage.setItem("token", data.token);
-        setMessage("Login successful");
-        // Redirect or load admin page
+        setAuthToken(data.token);
+
+        console.log("Login successful");
+        navigate("/admin");
       } else {
-        setMessage(data.message || "Login failed");
+        if (response.status === 401) {
+          setShowError("Invalid credentials"); // Show invalid credentials error
+        } else {
+          setShowError("Server error"); // Show network error
+        }
       }
     } catch (err) {
       console.error(err);
-      setMessage("Failed to login");
+      setShowError("Network error"); // Show error message
     }
   };
 
@@ -81,6 +83,14 @@ const Login = () => {
               Log In
             </button>
           </form>
+          {showError && (
+            <div className="error-box">
+              {showError}
+              <button className="close-button" onClick={() => setShowError("")}>
+                x
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

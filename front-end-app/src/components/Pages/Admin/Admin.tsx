@@ -1,6 +1,14 @@
-import React from "react";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Dispatch, SetStateAction } from "react";
 
-const Admin = () => {
+interface AdminProps {
+  setAuthToken: Dispatch<SetStateAction<string | null>>;
+}
+
+const Admin = ({ setAuthToken }: AdminProps) => {
+  const navigate = useNavigate();
+
   return (
     <div className="admin-page">
       <aside className="sidebar">
@@ -26,7 +34,7 @@ const Admin = () => {
           <h3>Dashboard</h3>
           <p>
             Welcome to the admin dashboard. Here you can find an overview of the
-            site’s activity.
+            sites activity.
           </p>
         </section>
         <section id="user-management">
@@ -37,6 +45,18 @@ const Admin = () => {
           <h3>Settings</h3>
           <p>Configure site settings here.</p>
         </section>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            localStorage.removeItem("token");
+            console.log("Token removed from local storage");
+            setAuthToken(null);
+            navigate("/");
+          }}
+        >
+          Log Out
+        </Button>
       </main>
     </div>
   );
