@@ -1,7 +1,8 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Route, Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 interface ProtectedRouteProps {
   element: React.ComponentType<any>;
   token: string | null;
@@ -14,6 +15,37 @@ const ProtectedRoute = ({
   ...rest
 }: ProtectedRouteProps) => {
   let location = useLocation();
+
+  useEffect(() => {
+    const navigate = useNavigate();
+
+    const verifyToken = async () => {
+      try {
+        if (token) {
+          // Send a request to the server to verify token validity
+          const response = await fetch("http://localhost:3000/auth/verify", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            // If token is invalid, clear it locally and redirect to login
+            localStorage.removeItem("token");
+            navigate("/login");
+          }
+        } else {
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Error verifying token:", error);
+      }
+    };
+
+    verifyToken();
+  }, [token]);
 
   return token ? (
     <Component {...rest} />
