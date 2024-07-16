@@ -15,10 +15,8 @@ const ProtectedRoute = ({
   ...rest
 }: ProtectedRouteProps) => {
   let location = useLocation();
-
+  const navigate = useNavigate();
   useEffect(() => {
-    const navigate = useNavigate();
-
     const verifyToken = async () => {
       try {
         if (token) {
