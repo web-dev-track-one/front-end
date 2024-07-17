@@ -10,9 +10,10 @@ interface TeamMemberBodyProps {
 const TeamMemberBody = ({index, name, role, bio}: TeamMemberBodyProps) => {
     return (
         <div className={`member-body ${index % 2 == 1 ? 'reverse' : ''}`}>
-            <h2>{name}</h2>
-            <span>{role}</span>
-            <p>{bio}</p>
+            <h2 className={'member-name'}>{name}</h2>
+            <hr></hr>
+            <p className={'member-role'}>{role}</p>
+            <p className={`member-bio ${index % 2 == 1 ? 'reverse' : ''}`}>{bio}</p>
         </div>
     )
 }
