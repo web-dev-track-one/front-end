@@ -5,18 +5,36 @@ import Events from "./components/Pages/Events/Events";
 import {Route, Routes} from "react-router-dom";
 import ContactUs from "./components/Pages/ContactUs/ContactUs.tsx";
 import MeetTheTeam from "./components/Pages/MeetTheTeam/MeetTheTeam.tsx";
+import Login from "./components/Pages/Login/Login";
+import Admin from "./components/Pages/Admin/Admin";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import { useState } from "react";
 
 const MainBody = () => {
-    return (
-        <Routes>
-            <Route element={<Home/>} path="/"/>
-            <Route element={<Announcements/>} path="/announcements"/>
-            <Route element={<Events/>} path="/events"/>
-            <Route element={<DueDates/>} path="/due-dates"/>
-            <Route element={<MeetTheTeam/>} path="/meet-the-team"/>
+     const [authToken, setAuthToken] = useState<string | null>(null);
+
+  return (
+    <Routes>
+      <Route element={<Home />} path="/" />
+      <Route element={<Announcements />} path="/announcements" />
+      <Route element={<Events />} path="/events" />
+      <Route element={<DueDates />} path="/due-dates" />
+        <Route element={<MeetTheTeam/>} path="/meet-the-team"/>
             <Route element={<ContactUs/>} path="/contact-us"/>
-        </Routes>
-    );
+      <Route path="/login" element={<Login setAuthToken={setAuthToken} />} />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute
+            token={localStorage.getItem("token")}
+            element={Admin}
+            setAuthToken={setAuthToken}
+          />
+        }
+      />
+    </Routes>
+  );
 };
 
 export default MainBody;
