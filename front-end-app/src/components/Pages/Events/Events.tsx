@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Event from "./Event";
 import "./Events.css";
+import { off } from "process";
 
 interface EventData {
   Title: string;
@@ -11,27 +12,42 @@ interface EventData {
   ApplicableTo: string;
   Image: string;
 }
+interface dataResponse {
+  allEvents: EventData[];
+  totalEvents: number;
+}
 
 const Events = () => {
   const [events, setEvents] = useState<EventData[]>([]);
+  const [totalEvents, setTotalEvents] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [limit] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Fetch announcements from backend
+    setLoading(true);
     const fetchEvents = async () => {
-      const response = await fetch("http://localhost:3000/events");
+      const response = await fetch(
+        `http://localhost:3000/events?offset=${offset}&limit=${limit}`
+      );
       if (!response.ok) {
         console.error("Failed to fetch events");
         return;
       }
 
-      const data: EventData[] = await response.json();
-
-      console.log(data[0].Image, typeof data[0].Image);
-      setEvents(data);
+      const data: dataResponse = await response.json();
+      setTotalEvents(data.totalEvents);
+      setEvents((prevEvents) => [...prevEvents, ...data.allEvents]);
+      setLoading(false);
     };
 
     fetchEvents();
-  }, []);
+  }, [offset]);
+
+  const loadMoreEvents = () => {
+    setOffset((prevOffset) => prevOffset + limit);
+  };
 
   return (
     <div className="events-container">
@@ -50,6 +66,14 @@ const Events = () => {
           />
         ))}
       </div>
+      {events.length < totalEvents && !loading && (
+        <div className="loadMoreButton-container">
+          <button className="loadMoreButton" onClick={loadMoreEvents}>
+            Load More
+          </button>
+        </div>
+      )}
+      {loading && <p>Loading...</p>}
     </div>
   );
 };

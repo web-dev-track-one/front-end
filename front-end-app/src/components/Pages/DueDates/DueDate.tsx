@@ -22,17 +22,23 @@ const DueDate = ({
   return (
     <div className="duedate">
       <div className="duedate-header">
-        <h3>{title}</h3>
+        <h3 className="duedate-title">{title}</h3>
         <h3 className="duedate-duedate">
           Due Date: {formattedDateDue.toDateString()}
         </h3>
-        <h3>{author}</h3>
+        <h3 className="duedate-author">{author}</h3>
       </div>
       <div className="duedate-body"></div>
       <div className="duedate-footer">
-        <span>Key Words: {keywords.join(", ")}</span>
-        <span>Applicable To: {applicableTo}</span>
-        <span>Posted: {formattedDate.toDateString()}</span>
+        <span className="duedate-keywords">
+          Key Words: {keywords.join(", ")}
+        </span>
+        <span className="duedate-applicable">
+          Applicable To: {applicableTo}
+        </span>
+        <span className="duedate-posted">
+          Posted: {formattedDate.toDateString()}
+        </span>
       </div>
     </div>
   );
