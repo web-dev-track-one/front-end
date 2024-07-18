@@ -1,4 +1,28 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
+}
+
+.loadMoreButton-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.loadMoreButton {
+  background-color: #3f6ebf;
+  color: white;
+  border: none;
+  padding: 20px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  justify-content: center;
+  font-size: large;
+}
+
+.loadMoreButton:hover {
+  background-color: #355b9e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

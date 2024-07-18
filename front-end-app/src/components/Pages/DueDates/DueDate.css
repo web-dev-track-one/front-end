@@ -17,8 +17,19 @@
   font-size: 1.4em;
   color: brown;
   font-weight: bold;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.duedate-author {
+  font-size: 1.1em;
+  justify-content: end;
+  align-items: center;
+  display: flex;
+  width: 15%;
+}
 .duedate-body {
   padding: 4px 0;
   display: flex;
@@ -33,6 +44,26 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   font-size: larger;
+}
+.duedate-keywords {
+  width: 60%;
+}
+.duedate-applicable {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 25%;
+}
+.duedate-posted {
+  width: 15%;
+  justify-content: end;
+  align-items: center;
+  display: flex;
+}
+.duedate-title {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  width: 60%; /* Set maximum width to 60% of the container */
 }
 
 .duedate-image {

@@ -11,24 +11,46 @@ interface DueDateData {
   "Applicable to": string;
 }
 
+interface dataResponse {
+  allDueDates: DueDateData[];
+  totalDueDates: number;
+}
+
 const DueDates = () => {
   const [duedates, setDuedates] = useState<DueDateData[]>([]);
+  const [totalDueDates, setTotalDueDates] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [limit] = useState(5);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Fetch announcements from backend
-    const fetchAnnouncements = async () => {
-      const response = await fetch("http://localhost:3000/duedates");
+    setLoading(true);
+
+    const fetchDueDates = async () => {
+      const response = await fetch(
+        `http://localhost:3000/duedates?offset=${offset}&limit=${limit}`
+      );
       if (!response.ok) {
-        console.error("Failed to fetch announcements");
+        console.error("Failed to fetch due dates");
         return;
       }
+      console.log(response);
 
-      const data: DueDateData[] = await response.json();
-      setDuedates(data);
+      const data: dataResponse = await response.json();
+      setDuedates((prevDuedates) => {
+        return [...prevDuedates, ...data.allDueDates];
+      });
+      setTotalDueDates(data.totalDueDates);
+      setLoading(false);
     };
 
-    fetchAnnouncements();
-  }, []);
+    fetchDueDates();
+  }, [offset]);
+
+  const loadMoreDueDates = () => {
+    setOffset((prevOffset) => prevOffset + limit);
+  };
 
   return (
     <div className="duedates-container">
@@ -46,6 +68,14 @@ const DueDates = () => {
           />
         ))}
       </div>
+      {duedates.length < totalDueDates && !loading && (
+        <div className="loadMoreButton-container">
+          <button className="loadMoreButton" onClick={loadMoreDueDates}>
+            Load More
+          </button>
+        </div>
+      )}
+      {loading && <p>Loading...</p>}
     </div>
   );
 };
