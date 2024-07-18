@@ -21,7 +21,7 @@ const Events = () => {
   const [events, setEvents] = useState<EventData[]>([]);
   const [totalEvents, setTotalEvents] = useState(0);
   const [offset, setOffset] = useState(0);
-  const [limit] = useState(1);
+  const [limit] = useState(3);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

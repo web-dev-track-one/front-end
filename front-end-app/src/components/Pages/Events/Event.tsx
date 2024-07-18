@@ -33,7 +33,7 @@ const Announcement = ({
           <p>{body}</p>
         </div>
         <div className="event-image">
-          <img src={`data:image/jpeg;base64,${image}`} alt={title} />
+          <img src={image} alt={title} />
         </div>
       </div>
       <div className="event-footer">
