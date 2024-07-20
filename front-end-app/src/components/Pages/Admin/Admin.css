@@ -1,0 +1,62 @@
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: center;
+}
+
+.admin-head {
+  border-bottom: 3px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-page h2 {
+  padding-left: 20px;
+}
+
+.admin-boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminCategoryBox {
+}
+
+.adminCategoryBox-header {
+  display: flex;
+  justify-content: center;
+}
+
+.adminCategoryBox-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: auto;
+  margin-left: 2cm;
+  margin-right: 2cm;
+}
+
+.adminCategoryBox-content Button {
+  margin-top: 25px;
+}
+
+.admin-create-form {
+  padding-top: 2cm;
+}
+
+.admin-create-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+.admin-create-form h1 {
+  padding-bottom: 20px;
+}

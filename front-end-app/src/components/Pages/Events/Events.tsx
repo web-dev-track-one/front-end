@@ -9,9 +9,10 @@ interface EventData {
   Body: string;
   DatePosted: Date;
   DateOfEvent: Date;
-  ApplicableTo: string;
+  "Applicable to": string;
   Image: string;
 }
+
 interface dataResponse {
   allEvents: EventData[];
   totalEvents: number;
@@ -61,7 +62,7 @@ const Events = () => {
             body={event.Body}
             dateOfEvent={event.DateOfEvent}
             datePosted={event.DatePosted}
-            applicableTo={event.ApplicableTo}
+            applicableTo={event["Applicable to"]}
             image={event.Image}
           />
         ))}
