@@ -60,3 +60,43 @@
 .admin-create-form h1 {
   padding-bottom: 20px;
 }
+
+.delete-form-container {
+  margin-top: 2cm;
+}
+
+.delete-form-buttons {
+  display: flex;
+  gap: 10vw;
+  justify-content: center;
+  margin: 1cm;
+}
+
+.deletable-doc.confirm-delete {
+  background-color: red;
+}
+
+.delete-button {
+  background-color: #1976d2; /* Blue background color */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.confirm-delete-button {
+  background-color: darkred;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.cancel-delete-button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 20px;
+}

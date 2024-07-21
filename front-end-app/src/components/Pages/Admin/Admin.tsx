@@ -6,6 +6,7 @@ import React from "react";
 import AdminCategoryBox from "./AdminCategoryBox";
 import "./Admin.css";
 import CreateForm from "./CreateForm";
+import DeleteForm from "./DeleteForm";
 
 interface AdminProps {
   setAuthToken: Dispatch<SetStateAction<string | null>>;
@@ -77,9 +78,7 @@ const Admin = ({ setAuthToken }: AdminProps) => {
       {create && (
         <CreateForm type={typeWindow} description="Create an announcement" />
       )}
-      {deleteForm && (
-        <CreateForm type={typeWindow} description="Delete an item" />
-      )}
+      {deleteForm && <DeleteForm type={typeWindow} />}
       {edit && <CreateForm type={typeWindow} description="Edit an item" />}
     </div>
   );

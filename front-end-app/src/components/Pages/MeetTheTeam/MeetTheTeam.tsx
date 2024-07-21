@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import TeamMember from "./TeamMember.tsx";
 import "./MeetTheTeam.css";
 import testData from "./test.json";
+import DeletableTeamMember from "../Admin/DeleteTeamMember.tsx";
+import { deleteDoc } from "../Admin/deleteFunction";
 
 interface TeamMemberData {
+  _id: string;
   Name: string;
   Role: string;
   Bio: string;
   Image: string;
 }
 
-const MeetTheTeam = () => {
+const MeetTheTeam = ({ eventType }: { eventType: string }) => {
   const [teamMembers, setTeamMembers] = useState<TeamMemberData[]>([]);
 
   useEffect(() => {
@@ -36,19 +39,43 @@ const MeetTheTeam = () => {
     fetchTeamMembers();
   }, []);
 
+  const handleDeleteTeamMember = async (id: string) => {
+    const success = await deleteDoc(id, "Team Members");
+    if (success) {
+      setTeamMembers((prevTeamMembers) =>
+        prevTeamMembers.filter((teamMember) => teamMember._id !== id)
+      );
+    }
+  };
+
   return (
     <div className={"meettheteam-container"}>
       <h1>Meet the Team</h1>
       <div className={"team-list"}>
         {teamMembers.map((teamMember, index) => (
-          <TeamMember
-            key={index}
-            index={index}
-            name={teamMember.Name}
-            role={teamMember.Role}
-            bio={teamMember.Bio}
-            image={teamMember.Image}
-          />
+          <>
+            {eventType === "view" ? (
+              <TeamMember
+                key={index}
+                index={index}
+                name={teamMember.Name}
+                role={teamMember.Role}
+                bio={teamMember.Bio}
+                image={teamMember.Image}
+              />
+            ) : (
+              <DeletableTeamMember
+                key={index}
+                index={index}
+                _id={teamMember._id}
+                name={teamMember.Name}
+                role={teamMember.Role}
+                bio={teamMember.Bio}
+                image={teamMember.Image}
+                onDelete={handleDeleteTeamMember}
+              />
+            )}
+          </>
         ))}
       </div>
     </div>
