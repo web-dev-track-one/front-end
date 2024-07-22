@@ -5,6 +5,8 @@ import Announcements from "../Announcements/Announcements";
 import Events from "../Events/Events";
 import Teams from "../MeetTheTeam/MeetTheTeam";
 import DueDates from "../DueDates/DueDates";
+import SearchBy from "./SearchBy";
+import GetAlltoDelete from "./GetAlltoDelete";
 
 import { useState, useEffect } from "react";
 
@@ -14,6 +16,7 @@ interface DeleteFormProps {
 
 const DeleteForm = ({ type }: DeleteFormProps) => {
   const [getAll, setGetAll] = useState(false);
+  const [searchBy, setSearchBy] = useState(false);
   const [announcement, setAnnouncement] = useState(false);
   const [event, setEvent] = useState(false);
   const [dueDate, setDueDate] = useState(false);
@@ -23,6 +26,7 @@ const DeleteForm = ({ type }: DeleteFormProps) => {
 
   useEffect(() => {
     setGetAll(false);
+    setSearchBy(false);
     if (type === "Events") {
       setSearchTypes("Title, Author or Text");
       setDescription("Events");
@@ -45,6 +49,7 @@ const DeleteForm = ({ type }: DeleteFormProps) => {
       setEvent(false);
       setTeam(false);
     } else {
+      // type === "Team"
       setSearchTypes("Name, Role or Bio");
       setDescription("a Team member");
       setTeam(true);
@@ -56,12 +61,20 @@ const DeleteForm = ({ type }: DeleteFormProps) => {
 
   const handleGetEverything = () => {
     setGetAll(true);
+    setSearchBy(false);
   };
   return (
     <div className="delete-form-container">
       <h1>Delete {description}</h1>
       <div className="delete-form-buttons">
-        <Button variant="contained" color="secondary">
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => {
+            setSearchBy(true);
+            setGetAll(false);
+          }}
+        >
           Search by {searchTypes}
         </Button>
         <Button
@@ -74,14 +87,9 @@ const DeleteForm = ({ type }: DeleteFormProps) => {
       </div>
       <div className="delete-form-results">
         {getAll ? (
-          <>
-            {announcement && <Announcements announcementType="delete" />}
-            {event && <Events eventType="delete" />}
-            {dueDate && <DueDates eventType="delete" />}
-            {team && <Teams eventType="delete" />}
-          </>
+          <GetAlltoDelete eventType="delete" docType={type} />
         ) : (
-          <p>Search for {description} to delete</p>
+          searchBy && <>{<SearchBy eventType="delete" docType={type} />}</>
         )}
       </div>
     </div>

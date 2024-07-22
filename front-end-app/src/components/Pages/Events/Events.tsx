@@ -16,47 +16,27 @@ interface EventData {
   Image: string;
 }
 
-interface dataResponse {
-  allEvents: EventData[];
-  totalEvents: number;
+interface EventsProps {
+  eventType: string;
+  docs: EventData[];
+  setDocs: React.Dispatch<React.SetStateAction<EventData[]>>;
+  loadMoreEvents?: () => void;
+  totalEvents?: number;
+  loading?: boolean;
 }
 
-const Events = ({ eventType }: { eventType: string }) => {
-  const [events, setEvents] = useState<EventData[]>([]);
-  const [totalEvents, setTotalEvents] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const [limit] = useState(3);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    // Fetch announcements from backend
-    setLoading(true);
-    const fetchEvents = async () => {
-      const response = await fetch(
-        `http://localhost:3000/events?offset=${offset}&limit=${limit}`
-      );
-      if (!response.ok) {
-        console.error("Failed to fetch events");
-        return;
-      }
-
-      const data: dataResponse = await response.json();
-      setTotalEvents(data.totalEvents);
-      setEvents((prevEvents) => [...prevEvents, ...data.allEvents]);
-      setLoading(false);
-    };
-
-    fetchEvents();
-  }, [offset]);
-
-  const loadMoreEvents = () => {
-    setOffset((prevOffset) => prevOffset + limit);
-  };
-
+const Events = ({
+  eventType,
+  docs,
+  setDocs,
+  loadMoreEvents,
+  totalEvents,
+  loading,
+}: EventsProps) => {
   const handleDeleteEvent = async (id: string) => {
     const success = await deleteDoc(id, "Events");
     if (success) {
-      setEvents((prevEvents) => prevEvents.filter((event) => event._id !== id));
+      setDocs((prevEvents) => prevEvents.filter((event) => event._id !== id));
     }
   };
 
@@ -64,7 +44,7 @@ const Events = ({ eventType }: { eventType: string }) => {
     <div className="events-container">
       <h1>Events</h1>
       <div className="events-list">
-        {events.map((event, index) => (
+        {docs.map((event, index) => (
           <>
             {eventType === "view" ? (
               <Event
@@ -93,13 +73,16 @@ const Events = ({ eventType }: { eventType: string }) => {
           </>
         ))}
       </div>
-      {events.length < totalEvents && !loading && (
-        <div className="loadMoreButton-container">
-          <button className="loadMoreButton" onClick={loadMoreEvents}>
-            Load More
-          </button>
-        </div>
-      )}
+      {eventType === "view" &&
+        !loading &&
+        totalEvents &&
+        docs.length < totalEvents && (
+          <div className="loadMoreButton-container">
+            <button className="loadMoreButton" onClick={loadMoreEvents}>
+              Load More
+            </button>
+          </div>
+        )}
       {loading && <p>Loading...</p>}
     </div>
   );

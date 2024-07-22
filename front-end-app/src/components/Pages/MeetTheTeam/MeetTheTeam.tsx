@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import TeamMember from "./TeamMember.tsx";
 import "./MeetTheTeam.css";
-import testData from "./test.json";
 import DeletableTeamMember from "../Admin/DeleteTeamMember.tsx";
 import { deleteDoc } from "../Admin/deleteFunction";
 
@@ -13,36 +12,17 @@ interface TeamMemberData {
   Image: string;
 }
 
-const MeetTheTeam = ({ eventType }: { eventType: string }) => {
-  const [teamMembers, setTeamMembers] = useState<TeamMemberData[]>([]);
+interface MeetTheTeamProps {
+  eventType: string;
+  docs: TeamMemberData[];
+  setDocs: React.Dispatch<React.SetStateAction<TeamMemberData[]>>;
+}
 
-  useEffect(() => {
-    const fetchTeamMembers = async () => {
-      // **
-      // * Uncomment below code when using the fetch method
-      // **
-      //
-      const response = await fetch("http://localhost:3000/team");
-      if (!response.ok) {
-        console.error("Failed to fetch team members");
-        return;
-      }
-      console.log(response);
-
-      const data: TeamMemberData[] = await response.json();
-
-      //const data: TeamMemberData[] = testData; // Comment this out when using the fetch method
-
-      setTeamMembers(data);
-    };
-
-    fetchTeamMembers();
-  }, []);
-
+const MeetTheTeam = ({ eventType, docs, setDocs }: MeetTheTeamProps) => {
   const handleDeleteTeamMember = async (id: string) => {
     const success = await deleteDoc(id, "Team Members");
     if (success) {
-      setTeamMembers((prevTeamMembers) =>
+      setDocs((prevTeamMembers) =>
         prevTeamMembers.filter((teamMember) => teamMember._id !== id)
       );
     }
@@ -52,7 +32,7 @@ const MeetTheTeam = ({ eventType }: { eventType: string }) => {
     <div className={"meettheteam-container"}>
       <h1>Meet the Team</h1>
       <div className={"team-list"}>
-        {teamMembers.map((teamMember, index) => (
+        {docs.map((teamMember, index) => (
           <>
             {eventType === "view" ? (
               <TeamMember
