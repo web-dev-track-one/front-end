@@ -100,3 +100,14 @@
   cursor: pointer;
   margin-left: 20px;
 }
+
+.picture-button {
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
+  display: flex;
+  position: relative;
+}
+
+.input-file {
+  font-size: 1.25em;
+}

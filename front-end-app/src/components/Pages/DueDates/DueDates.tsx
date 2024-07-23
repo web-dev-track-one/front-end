@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "./DueDates.css";
 import DueDate from "./DueDate";
-import { deleteDoc } from "../Admin/deleteFunction";
-import DeletableDueDate from "../Admin/DeleteDueDate";
+import { deleteDoc, editDoc } from "../Admin/helperFunctions";
+import DeletableDueDate from "../Admin/DeleteDoc/DeleteDueDate";
+import EditableDueDate from "../Admin/EditDoc/EditDueDate";
 
 interface DueDateData {
   _id: string;
@@ -40,6 +41,17 @@ const DueDates = ({
     }
   };
 
+  const handleEditDueDate = async (id: string, updatedDueDate: DueDateData) => {
+    const success = await editDoc(id, updatedDueDate, "duedate");
+    if (success) {
+      setDocs((prevDueDates) =>
+        prevDueDates.map((dueDate) =>
+          dueDate._id === id ? { ...dueDate, ...updatedDueDate } : dueDate
+        )
+      );
+    }
+  };
+
   return (
     <div className="duedates-container">
       <h1>Due Dates</h1>
@@ -56,7 +68,7 @@ const DueDates = ({
                 dateDue={duedate["Due Date"]}
                 applicableTo={duedate["Applicable to"]}
               />
-            ) : (
+            ) : eventType === "delete" ? (
               <DeletableDueDate
                 _id={duedate._id}
                 title={duedate.Title}
@@ -66,6 +78,17 @@ const DueDates = ({
                 dateDue={duedate["Due Date"]}
                 applicableTo={duedate["Applicable to"]}
                 onDelete={handleDeleteDueDate}
+              />
+            ) : (
+              <EditableDueDate
+                _id={duedate._id}
+                title={duedate.Title}
+                author={duedate.Author}
+                datePosted={duedate["Date Posted"]}
+                dueDate={duedate["Due Date"]}
+                keywords={duedate.Keywords}
+                applicableTo={duedate["Applicable to"]}
+                onEdit={handleEditDueDate}
               />
             )}
           </>

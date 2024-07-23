@@ -4,11 +4,11 @@ import Search from "./Search";
 
 import { useState, useEffect } from "react";
 
-interface DeleteFormProps {
+interface EditFormProps {
   type: string;
 }
 
-const DeleteForm = ({ type }: DeleteFormProps) => {
+const EditForm = ({ type }: EditFormProps) => {
   const [description, setDescription] = useState("");
 
   useEffect(() => {
@@ -24,11 +24,11 @@ const DeleteForm = ({ type }: DeleteFormProps) => {
   }, [type]);
 
   return (
-    <div className="delete-form-container">
-      <h1>Delete {description}</h1>
-      <Search type={type} searchPurpose="delete" />
+    <div className="edit-form-container">
+      <h1>Edit {description}</h1>
+      <Search type={type} searchPurpose="edit" />
     </div>
   );
 };
 
-export default DeleteForm;
+export default EditForm;

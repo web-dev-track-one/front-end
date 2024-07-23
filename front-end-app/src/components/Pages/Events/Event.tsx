@@ -4,8 +4,8 @@ interface EventProps {
   title: string;
   author: string;
   body: string;
-  datePosted: Date;
-  dateOfEvent: Date;
+  datePosted: string;
+  dateOfEvent: string;
   applicableTo: string;
   image: string;
 }

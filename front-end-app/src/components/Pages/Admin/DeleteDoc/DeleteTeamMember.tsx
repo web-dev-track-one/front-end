@@ -1,4 +1,4 @@
-import TeamMember from "../MeetTheTeam/TeamMember";
+import TeamMember from "../../MeetTheTeam/TeamMember";
 import { useState } from "react";
 
 interface DeleteTeamMemberProps {

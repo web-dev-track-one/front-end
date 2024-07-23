@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import Event from "./Event";
 import "./Events.css";
-
-import DeleteEvent from "../Admin/DeleteEvent";
-import { deleteDoc } from "../Admin/deleteFunction";
+import EditEvent from "../Admin/EditDoc/EditEvent";
+import DeleteEvent from "../Admin/DeleteDoc/DeleteEvent";
+import { deleteDoc, editDoc } from "../Admin/helperFunctions";
 
 interface EventData {
   _id: string;
   Title: string;
   Author: string;
   Body: string;
-  DatePosted: Date;
-  DateOfEvent: Date;
+  DatePosted: string;
+  DateOfEvent: string;
   "Applicable to": string;
   Image: string;
 }
@@ -40,6 +40,17 @@ const Events = ({
     }
   };
 
+  const handleEditEvent = async (id: string, updatedEvent: EventData) => {
+    const success = await editDoc(id, updatedEvent, "event");
+    if (success) {
+      setDocs((prevEvents) =>
+        prevEvents.map((event) =>
+          event._id === id ? { ...event, ...updatedEvent } : event
+        )
+      );
+    }
+  };
+
   return (
     <div className="events-container">
       <h1>Events</h1>
@@ -57,7 +68,7 @@ const Events = ({
                 applicableTo={event["Applicable to"]}
                 image={event.Image}
               />
-            ) : (
+            ) : eventType === "delete" ? (
               <DeleteEvent
                 _id={event._id}
                 title={event.Title}
@@ -68,6 +79,18 @@ const Events = ({
                 applicableTo={event["Applicable to"]}
                 image={event.Image}
                 onDelete={handleDeleteEvent}
+              />
+            ) : (
+              <EditEvent
+                _id={event._id}
+                title={event.Title}
+                author={event.Author}
+                body={event.Body}
+                dateOfEvent={event.DateOfEvent}
+                datePosted={event.DatePosted}
+                applicableTo={event["Applicable to"]}
+                image={event.Image}
+                onEdit={handleEditEvent}
               />
             )}
           </>

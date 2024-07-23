@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import TeamMember from "./TeamMember.tsx";
 import "./MeetTheTeam.css";
-import DeletableTeamMember from "../Admin/DeleteTeamMember.tsx";
-import { deleteDoc } from "../Admin/deleteFunction";
+import EditTeam from "../Admin/EditDoc/EditTeam.tsx";
+import DeleteTeamMember from "../Admin/DeleteDoc/DeleteTeamMember.tsx";
+import { deleteDoc, editDoc } from "../Admin/helperFunctions.ts";
 
 interface TeamMemberData {
   _id: string;
@@ -28,31 +29,55 @@ const MeetTheTeam = ({ eventType, docs, setDocs }: MeetTheTeamProps) => {
     }
   };
 
+  const handleEditTeamMember = async (
+    id: string,
+    updatedTeamMember: TeamMemberData
+  ) => {
+    const success = await editDoc(id, updatedTeamMember, "team");
+    if (success) {
+      setDocs((prevTeamMembers) =>
+        prevTeamMembers.map((teamMember) =>
+          teamMember._id === id
+            ? { ...teamMember, ...updatedTeamMember }
+            : teamMember
+        )
+      );
+    }
+  };
+
   return (
     <div className={"meettheteam-container"}>
       <h1>Meet the Team</h1>
       <div className={"team-list"}>
-        {docs.map((teamMember, index) => (
+        {docs.map((member, index) => (
           <>
             {eventType === "view" ? (
               <TeamMember
-                key={index}
                 index={index}
-                name={teamMember.Name}
-                role={teamMember.Role}
-                bio={teamMember.Bio}
-                image={teamMember.Image}
+                name={member.Name}
+                role={member.Role}
+                bio={member.Bio}
+                image={member.Image}
+              />
+            ) : eventType === "delete" ? (
+              <DeleteTeamMember
+                index={index}
+                _id={member._id}
+                name={member.Name}
+                role={member.Role}
+                bio={member.Bio}
+                image={member.Image}
+                onDelete={handleDeleteTeamMember}
               />
             ) : (
-              <DeletableTeamMember
-                key={index}
+              <EditTeam
                 index={index}
-                _id={teamMember._id}
-                name={teamMember.Name}
-                role={teamMember.Role}
-                bio={teamMember.Bio}
-                image={teamMember.Image}
-                onDelete={handleDeleteTeamMember}
+                _id={member._id}
+                name={member.Name}
+                role={member.Role}
+                bio={member.Bio}
+                image={member.Image}
+                onEdit={handleEditTeamMember}
               />
             )}
           </>

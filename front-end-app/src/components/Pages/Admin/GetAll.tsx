@@ -28,8 +28,8 @@ interface EventData {
   Title: string;
   Author: string;
   Body: string;
-  DatePosted: Date;
-  DateOfEvent: Date;
+  DatePosted: string;
+  DateOfEvent: string;
   "Applicable to": string;
   Image: string;
 }
@@ -49,7 +49,7 @@ interface GetAlltoDeleteProps {
   docType: string;
 }
 
-const GetAlltoDelete = ({ eventType, docType }: GetAlltoDeleteProps) => {
+const GetAll = ({ eventType, docType }: GetAlltoDeleteProps) => {
   const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
   const [dueDates, setDueDates] = useState<DueDateData[]>([]);
   const [events, setEvents] = useState<EventData[]>([]);
@@ -78,9 +78,6 @@ const GetAlltoDelete = ({ eventType, docType }: GetAlltoDeleteProps) => {
         setTeams(data as TeamData[]);
       }
     };
-
-    console.log("Fetching all docs to delete");
-
     fetchDocs();
   }, []);
   return (
@@ -105,4 +102,4 @@ const GetAlltoDelete = ({ eventType, docType }: GetAlltoDeleteProps) => {
   );
 };
 
-export default GetAlltoDelete;
+export default GetAll;

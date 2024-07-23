@@ -1,29 +1,26 @@
-import Event from "../Events/Event";
+import { on } from "events";
+import Announcement from "../../Announcements/Announcement";
 import { useState } from "react";
 
-interface EventDataProps {
+interface DeletableAnnouncementProps {
   _id: string;
   title: string;
   author: string;
   body: string;
-  datePosted: Date;
-  dateOfEvent: Date;
-  applicableTo: string;
-  image: string;
+  keywords: string[];
+  date: string;
   onDelete: (id: string) => void;
 }
 
-const DeletableEvent = ({
+const DeletableAnnouncement = ({
   _id,
   title,
   author,
   body,
-  datePosted,
-  dateOfEvent,
-  applicableTo,
-  image,
+  keywords,
+  date,
   onDelete,
-}: EventDataProps) => {
+}: DeletableAnnouncementProps) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const handleDeleteClick = () => {
@@ -41,14 +38,12 @@ const DeletableEvent = ({
 
   return (
     <div className={`deletable-doc ${confirmDelete ? "confirm-delete" : ""}`}>
-      <Event
+      <Announcement
         title={title}
         author={author}
         body={body}
-        datePosted={datePosted}
-        dateOfEvent={dateOfEvent}
-        applicableTo={applicableTo}
-        image={image}
+        keywords={keywords}
+        date={date}
       />
       {confirmDelete ? (
         <div className="confirm-delete-buttons">
@@ -71,4 +66,4 @@ const DeletableEvent = ({
   );
 };
 
-export default DeletableEvent;
+export default DeletableAnnouncement;

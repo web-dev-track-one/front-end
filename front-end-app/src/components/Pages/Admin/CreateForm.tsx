@@ -1,5 +1,5 @@
-import { TextField, Button, FormControl, InputLabel } from "@mui/material";
-import { useState } from "react";
+import { TextField, Button } from "@mui/material";
+import { useState, useEffect } from "react";
 
 interface CreateFormProps {
   type: string;
@@ -20,6 +20,10 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
   } else {
     secondDate = "";
   }
+
+  useEffect(() => {
+    setSelectedFile(null);
+  }, [type]);
 
   let body = "";
   if (type === "Announcements" || type === "Events") {
@@ -71,7 +75,6 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
 
     // Convert plain object to JSON
     const jsonString = JSON.stringify(formDataObject);
-    console.log(jsonString); // For debugging
 
     try {
       const addressOfRequest =
@@ -228,21 +231,17 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
           />
         )}
         {(type === "Events" || type === "Team") && (
-          <FormControl fullWidth margin="normal">
-            <InputLabel shrink={true} htmlFor="image"></InputLabel>
-            <input
-              type="file"
-              id="image"
-              onChange={handleFileChange}
-              style={{ display: "none" }}
-            />
+          <div className="picture-button">
             <label htmlFor="image">
-              <Button variant="contained" component="span">
-                Upload Image
-              </Button>
+              (Optional) Choose a picture:{" "}
+              <input
+                type="file"
+                id="image"
+                name="Image"
+                onChange={handleFileChange}
+              />
             </label>
-            {selectedFile && <p>{selectedFile.name}</p>}
-          </FormControl>
+          </div>
         )}
         <Button variant="contained" color="primary" type="submit">
           Submit

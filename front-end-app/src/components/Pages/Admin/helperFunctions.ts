@@ -62,3 +62,32 @@ export const deleteDoc = async (
     return false;
   }
 };
+
+export const editDoc = async (
+  id: string,
+  updatedDoc: any,
+  componentName: string
+) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/${componentName}/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedDoc),
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Failed to update document");
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error updating document:", error);
+    return false;
+  }
+};

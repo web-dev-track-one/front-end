@@ -30,8 +30,8 @@ interface EventData {
   Title: string;
   Author: string;
   Body: string;
-  DatePosted: Date;
-  DateOfEvent: Date;
+  DatePosted: string;
+  DateOfEvent: string;
   "Applicable to": string;
   Image: string;
 }
@@ -123,26 +123,26 @@ const SearchBy = ({ eventType, docType }: SearchByProps) => {
           <>
             {docType === "Announcements" && (
               <Announcements
-                announcementType="delete"
+                announcementType={eventType}
                 docs={announcements}
                 setDocs={setAnnouncements}
               />
             )}
             {docType === "Due Dates" && (
               <DueDates
-                eventType="delete"
+                eventType={eventType}
                 docs={dueDates}
                 setDocs={setDueDates}
               />
             )}
 
             {docType === "Events" && (
-              <Events eventType="delete" docs={events} setDocs={setEvents} />
+              <Events eventType={eventType} docs={events} setDocs={setEvents} />
             )}
             {docType === "Team" && (
-              <Teams eventType="delete" docs={teams} setDocs={setTeams} />
+              <Teams eventType={eventType} docs={teams} setDocs={setTeams} />
             )}
-            {noResults && <h2>No results found</h2>}
+            {noResults && <h4>No results found</h4>}
           </>
         )}
       </div>

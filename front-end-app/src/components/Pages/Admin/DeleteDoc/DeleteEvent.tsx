@@ -1,26 +1,29 @@
-import DueDate from "../DueDates/DueDate";
+import Event from "../../Events/Event";
 import { useState } from "react";
-interface DueDateData {
+
+interface EventDataProps {
   _id: string;
   title: string;
   author: string;
-  keywords: string[];
+  body: string;
   datePosted: string;
-  dateDue: string;
+  dateOfEvent: string;
   applicableTo: string;
+  image: string;
   onDelete: (id: string) => void;
 }
 
-const DeletableDueDate = ({
+const DeletableEvent = ({
   _id,
   title,
   author,
-  keywords,
+  body,
   datePosted,
-  dateDue,
+  dateOfEvent,
   applicableTo,
+  image,
   onDelete,
-}: DueDateData) => {
+}: EventDataProps) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const handleDeleteClick = () => {
@@ -38,13 +41,14 @@ const DeletableDueDate = ({
 
   return (
     <div className={`deletable-doc ${confirmDelete ? "confirm-delete" : ""}`}>
-      <DueDate
+      <Event
         title={title}
         author={author}
-        keywords={keywords}
+        body={body}
         datePosted={datePosted}
-        dateDue={dateDue}
+        dateOfEvent={dateOfEvent}
         applicableTo={applicableTo}
+        image={image}
       />
       {confirmDelete ? (
         <div className="confirm-delete-buttons">
@@ -67,4 +71,4 @@ const DeletableDueDate = ({
   );
 };
 
-export default DeletableDueDate;
+export default DeletableEvent;

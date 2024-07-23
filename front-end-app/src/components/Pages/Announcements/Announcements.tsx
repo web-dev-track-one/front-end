@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Announcement from "./Announcement";
 import "./Announcements.css";
-import DeletableAnnouncement from "../Admin/DeleteAnnouncement";
-import { deleteDoc } from "../Admin/deleteFunction";
-
+import DeletableAnnouncement from "../Admin/DeleteDoc/DeleteAnnouncement";
+import { deleteDoc, editDoc } from "../Admin/helperFunctions";
+import EditableAnnouncement from "../Admin/EditDoc/EditAnnouncement";
 interface AnnouncementData {
   _id: string;
   Title: string;
@@ -39,6 +39,22 @@ const Announcements = ({
     }
   };
 
+  const handleEditAnnouncement = async (
+    id: string,
+    updatedAnnouncement: AnnouncementData
+  ) => {
+    const success = await editDoc(id, updatedAnnouncement, "announcement");
+    if (success) {
+      setDocs((prevAnnouncements) =>
+        prevAnnouncements.map((announcement) =>
+          announcement._id === id
+            ? { ...announcement, ...updatedAnnouncement }
+            : announcement
+        )
+      );
+    }
+  };
+
   return (
     <div className="announcements-container">
       <h1>Announcements</h1>
@@ -57,7 +73,7 @@ const Announcements = ({
                   onDelete={handleDeleteAnnouncement}
                 />
               </div>
-            ) : (
+            ) : announcementType === "view" ? (
               <Announcement
                 key={index}
                 title={announcement.Title}
@@ -65,6 +81,17 @@ const Announcements = ({
                 body={announcement.Body}
                 keywords={announcement.Keywords}
                 date={announcement.Date}
+              />
+            ) : (
+              <EditableAnnouncement
+                key={index}
+                _id={announcement._id}
+                title={announcement.Title}
+                author={announcement.Author}
+                body={announcement.Body}
+                keywords={announcement.Keywords}
+                date={announcement.Date}
+                onEdit={handleEditAnnouncement}
               />
             )}
           </>

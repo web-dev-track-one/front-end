@@ -25,7 +25,6 @@ const EventsPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Fetch announcements from backend
     setLoading(true);
     const fetchEvents = async () => {
       const response = await fetch(
