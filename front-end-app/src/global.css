@@ -2,6 +2,8 @@ body,
 html {
   margin: 0;
   padding: 0;
+
+  scrollbar-gutter: stable; /* Adds permanent scrollbar space for classic scrollbars  */
 }
 
 .loadMoreButton-container {
