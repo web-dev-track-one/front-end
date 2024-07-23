@@ -75,9 +75,7 @@ const Admin = ({ setAuthToken }: AdminProps) => {
         <AdminCategoryBox title="Due Dates" setter={setTypeActionIndex} />
         <AdminCategoryBox title="Team" setter={setTypeActionIndex} />
       </div>
-      {create && (
-        <CreateForm type={typeWindow} description="Create an announcement" />
-      )}
+      {create && <CreateForm type={typeWindow} />}
       {deleteForm && <DeleteForm type={typeWindow} />}
       {edit && <EditForm type={typeWindow} />}
     </div>

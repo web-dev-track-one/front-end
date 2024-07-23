@@ -59,7 +59,7 @@ const DeletableDueDate = ({
           </button>
         </div>
       ) : (
-        <button className="delete-button" onClick={handleDeleteClick}>
+        <button className="admin-action-button" onClick={handleDeleteClick}>
           Delete
         </button>
       )}

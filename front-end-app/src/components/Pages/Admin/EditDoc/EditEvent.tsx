@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 import Event from "../../Events/Event";
 
@@ -34,6 +34,18 @@ const EditEvent = ({
   const [editedApplicableTo, setEditedApplicableTo] = useState(applicableTo);
   const [editedImage, setEditedImage] = useState(image);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  useEffect(() => {
+    const formattedDate = new Date(editedDatePosted)
+      .toISOString()
+      .split("T")[0];
+    setEditedDatePosted(formattedDate);
+
+    const formattedDate2 = new Date(editedDateOfEvent)
+      .toISOString()
+      .split("T")[0];
+    setEditedDateOfEvent(formattedDate2);
+  }, [editedDateOfEvent, editedDatePosted]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -116,13 +128,12 @@ const EditEvent = ({
             applicableTo={applicableTo}
             image={image}
           />
-          <button className="edit-button" onClick={handleEditClick}>
+          <button className="admin-action-button" onClick={handleEditClick}>
             Edit
           </button>
         </>
       ) : (
         <div className="admin-edit-form">
-          <h1>Edit Event</h1>
           <form onSubmit={handleSubmit} id="editForm">
             <TextField
               label="Title"

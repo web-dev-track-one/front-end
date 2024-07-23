@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 import Announcement from "../../Announcements/Announcement";
 
@@ -26,7 +26,7 @@ const EditableAnnouncement = ({
   const [editedAuthor, setEditedAuthor] = useState(author);
   const [editedBody, setEditedBody] = useState(body);
   const [editedKeywords, setEditedKeywords] = useState(keywords.join(", "));
-  const [editedDate, setEditedDate] = useState(date);
+  const [editedDate, setEditedDate] = useState("");
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -53,6 +53,11 @@ const EditableAnnouncement = ({
     setIsEditing(false);
   };
 
+  useEffect(() => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+    setEditedDate(formattedDate);
+  }, [date]);
+
   return (
     <div className={`editable-doc ${isEditing ? "editing" : ""}`}>
       {!isEditing ? (
@@ -64,13 +69,12 @@ const EditableAnnouncement = ({
             keywords={keywords}
             date={date}
           />
-          <button className="edit-button" onClick={handleEditClick}>
+          <button className="admin-action-button" onClick={handleEditClick}>
             Edit
           </button>
         </>
       ) : (
         <div className="admin-edit-form">
-          <h1>Edit Announcement</h1>
           <form onSubmit={handleSubmit} id="editForm">
             <TextField
               label="Title"

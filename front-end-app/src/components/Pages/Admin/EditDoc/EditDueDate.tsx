@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { TextField, Button, FormControl, InputLabel } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { TextField, Button } from "@mui/material";
 import DueDate from "../../DueDates/DueDate"; // Assume this component is similar to Announcement component
 
 interface EditDueDateProps {
@@ -26,9 +26,19 @@ const EditDueDate = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedAuthor, setEditedAuthor] = useState(author);
-  const [editedDatePosted, setEditedDatePosted] = useState(datePosted);
-  const [editedDueDate, setEditedDueDate] = useState(dueDate);
+  const [editedDatePosted, setEditedDatePosted] = useState("");
+  const [editedDueDate, setEditedDueDate] = useState("");
   const [editedKeywords, setEditedKeywords] = useState(keywords.join(", "));
+
+  useEffect(() => {
+    const formattedDate = new Date(dueDate).toISOString().split("T")[0];
+    setEditedDueDate(formattedDate);
+
+    const formattedDatePosted = new Date(datePosted)
+      .toISOString()
+      .split("T")[0];
+    setEditedDatePosted(formattedDatePosted);
+  }, [editedDueDate, editedDatePosted]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -63,13 +73,12 @@ const EditDueDate = ({
             keywords={keywords}
             applicableTo={applicableTo}
           />
-          <button className="edit-button" onClick={handleEditClick}>
+          <button className="admin-action-button" onClick={handleEditClick}>
             Edit
           </button>
         </>
       ) : (
         <div className="admin-edit-form">
-          <h1>Edit Due Date</h1>
           <form onSubmit={handleSubmit} id="editForm">
             <TextField
               label="Title"

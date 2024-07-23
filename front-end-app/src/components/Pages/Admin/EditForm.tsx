@@ -24,7 +24,7 @@ const EditForm = ({ type }: EditFormProps) => {
   }, [type]);
 
   return (
-    <div className="edit-form-container">
+    <div className="admin-form-container">
       <h1>Edit {description}</h1>
       <Search type={type} searchPurpose="edit" />
     </div>

@@ -42,8 +42,6 @@ interface TeamData {
   Image: string;
 }
 
-type DocData = AnnouncementData | DueDateData | EventData | TeamData;
-
 interface GetAlltoDeleteProps {
   eventType: string;
   docType: string;
@@ -54,7 +52,6 @@ const GetAll = ({ eventType, docType }: GetAlltoDeleteProps) => {
   const [dueDates, setDueDates] = useState<DueDateData[]>([]);
   const [events, setEvents] = useState<EventData[]>([]);
   const [teams, setTeams] = useState<TeamData[]>([]);
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchDocs = async () => {

@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import "./Admin.css";
 import Search from "./Search";
 
@@ -24,7 +23,7 @@ const DeleteForm = ({ type }: DeleteFormProps) => {
   }, [type]);
 
   return (
-    <div className="delete-form-container">
+    <div className="admin-form-container">
       <h1>Delete {description}</h1>
       <Search type={type} searchPurpose="delete" />
     </div>

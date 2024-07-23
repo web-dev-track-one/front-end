@@ -21,7 +21,7 @@ interface MeetTheTeamProps {
 
 const MeetTheTeam = ({ eventType, docs, setDocs }: MeetTheTeamProps) => {
   const handleDeleteTeamMember = async (id: string) => {
-    const success = await deleteDoc(id, "Team Members");
+    const success = await deleteDoc(id, "Team");
     if (success) {
       setDocs((prevTeamMembers) =>
         prevTeamMembers.filter((teamMember) => teamMember._id !== id)

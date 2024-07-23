@@ -28,11 +28,22 @@ const DeletableTeamMember = ({
 
   const handleConfirmDelete = () => {
     setConfirmDelete(false);
+    deleteImage(image);
     onDelete(_id);
   };
 
   const handleCancelDelete = () => {
     setConfirmDelete(false);
+  };
+
+  const deleteImage = async (imageUrl: string) => {
+    await fetch("http://localhost:3000/s3/s3Url", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ imageUrl }),
+    });
   };
 
   return (
@@ -57,7 +68,7 @@ const DeletableTeamMember = ({
           </button>
         </div>
       ) : (
-        <button className="delete-button" onClick={handleDeleteClick}>
+        <button className="admin-action-button" onClick={handleDeleteClick}>
           Delete
         </button>
       )}

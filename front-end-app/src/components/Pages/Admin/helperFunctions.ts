@@ -10,7 +10,7 @@ export const deleteDoc = async (
 
     const token = localStorage.getItem("token");
     if (!token) {
-      console.error("No token found in local storage");
+      console.error("No token found in local storage. No user logged in.");
       return false;
     }
 

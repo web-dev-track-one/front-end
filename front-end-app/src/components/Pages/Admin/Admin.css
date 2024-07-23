@@ -3,6 +3,9 @@
   flex-direction: column;
   padding: 30px;
   justify-content: center;
+  font-weight: normal;
+  margin-bottom: 8px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .admin-head {
@@ -47,8 +50,8 @@
   margin-top: 25px;
 }
 
-.admin-create-form {
-  padding-top: 2cm;
+.admin-create-form Button {
+  margin-bottom: 0.5cm;
 }
 
 .admin-create-form form {
@@ -61,11 +64,11 @@
   padding-bottom: 20px;
 }
 
-.delete-form-container {
+.admin-form-container {
   margin-top: 2cm;
 }
 
-.delete-form-buttons {
+.search-form-buttons {
   display: flex;
   gap: 10vw;
   justify-content: center;
@@ -76,7 +79,7 @@
   background-color: red;
 }
 
-.delete-button {
+.admin-action-button {
   background-color: #1976d2; /* Blue background color */
   color: white;
   border: none;
@@ -101,13 +104,16 @@
   margin-left: 20px;
 }
 
-.picture-button {
-  margin-top: 0.5cm;
+.picture-input {
   margin-bottom: 0.5cm;
   display: flex;
   position: relative;
 }
 
-.input-file {
-  font-size: 1.25em;
+.pciture-choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
 }

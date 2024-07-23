@@ -1,14 +1,17 @@
 import { TextField, Button } from "@mui/material";
 import { useState, useEffect } from "react";
+import DefaultPic from "../../../assets/default_pic.jpg";
 
 interface CreateFormProps {
   type: string;
-  description?: string;
 }
 
 // type is either "Events", "Due Dates", "Announcements", or "Team"
-const CreateForm = ({ type, description }: CreateFormProps) => {
+const CreateForm = ({ type }: CreateFormProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [customPic, setCustom] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [fail, setFail] = useState(false);
 
   let secondDate = "";
   if (type === "Events") {
@@ -23,7 +26,22 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
 
   useEffect(() => {
     setSelectedFile(null);
+    setSuccess(false);
   }, [type]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSuccess(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [success]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFail(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [fail]);
 
   let body = "";
   if (type === "Announcements" || type === "Events") {
@@ -66,13 +84,20 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
           body: selectedFile,
         });
 
+        if (!response.ok) {
+          setFail(true);
+          throw new Error("Failed to upload file");
+        }
+
         formDataObject["Image"] = fileUrl;
       } catch (error) {
+        setFail(true);
         console.error("Error uploading file:", error);
         return; // Abort the form submission if file upload fails
       }
+    } else {
+      formDataObject["Image"] = DefaultPic;
     }
-
     // Convert plain object to JSON
     const jsonString = JSON.stringify(formDataObject);
 
@@ -89,13 +114,13 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
       });
 
       if (!response.ok) {
+        setFail(true);
         throw new Error("Failed to submit form");
       }
-
-      const result = await response.json();
-      console.log("Form submitted successfully", result);
+      setSuccess(true);
     } catch (error) {
       console.error("Error submitting form", error);
+      setFail(true);
     }
 
     const form = document.querySelector<HTMLFormElement>("#createForm");
@@ -154,6 +179,7 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
             variant="outlined"
             fullWidth
             margin="normal"
+            value={new Date().toISOString().split("T")[0]}
             InputLabelProps={{
               shrink: true,
             }}
@@ -176,7 +202,7 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
         )}
         {secondDate && (
           <TextField
-            label={secondDate}
+            label={secondDate === "DateOfEvent" ? "Date Of Event" : secondDate}
             type="date"
             name={secondDate}
             variant="outlined"
@@ -231,21 +257,60 @@ const CreateForm = ({ type, description }: CreateFormProps) => {
           />
         )}
         {(type === "Events" || type === "Team") && (
-          <div className="picture-button">
+          <div className="picture-input">
             <label htmlFor="image">
-              (Optional) Choose a picture:{" "}
-              <input
-                type="file"
-                id="image"
-                name="Image"
-                onChange={handleFileChange}
-              />
+              <div className="pciture-choice">
+                Choose a picture:{" "}
+                <label>
+                  <input
+                    type="radio"
+                    name="myRadio"
+                    defaultChecked={true}
+                    value="option1"
+                    onClick={() => setCustom(false)}
+                  />{" "}
+                  Default
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="myRadio"
+                    value="option2"
+                    onClick={() => setCustom(true)}
+                  />{" "}
+                  Custom
+                </label>
+              </div>
+              {customPic && (
+                <input
+                  type="file"
+                  id="image"
+                  name="Image"
+                  onChange={handleFileChange}
+                />
+              )}
             </label>
           </div>
         )}
-        <Button variant="contained" color="primary" type="submit">
-          Submit
-        </Button>
+
+        {!success && !fail && (
+          <Button variant="contained" color="primary" type="submit">
+            Submit
+          </Button>
+          // This is done in order to prevent the user from submitting the form multiple times,
+          // thus creating multiple pictures the s3 bucket
+        )}
+
+        {success && (
+          <Button variant="contained" color="success">
+            Success!
+          </Button>
+        )}
+        {fail && (
+          <Button variant="contained" color="error">
+            Failed to submit form
+          </Button>
+        )}
       </form>
     </div>
   );

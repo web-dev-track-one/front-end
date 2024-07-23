@@ -15,8 +15,6 @@ const Announcement = ({
   keywords,
   date,
 }: AnnouncementProps) => {
-  const formattedDate = new Date(date);
-
   return (
     <div className="announcement">
       <div className="announcement-header">
@@ -28,7 +26,7 @@ const Announcement = ({
       </div>
       <div className="announcement-footer">
         <span>Key Words: {keywords.join(", ")}</span>
-        <span>Posted: {formattedDate.toDateString()}</span>
+        <span>Posted: {date.split("T")[0]}</span>
       </div>
     </div>
   );

@@ -33,10 +33,21 @@ const DeletableEvent = ({
   const handleConfirmDelete = () => {
     setConfirmDelete(false);
     onDelete(_id);
+    deleteImage(image);
   };
 
   const handleCancelDelete = () => {
     setConfirmDelete(false);
+  };
+
+  const deleteImage = async (imageUrl: string) => {
+    await fetch("http://localhost:3000/s3/s3Url", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ imageUrl }),
+    });
   };
 
   return (
@@ -63,7 +74,7 @@ const DeletableEvent = ({
           </button>
         </div>
       ) : (
-        <button className="delete-button" onClick={handleDeleteClick}>
+        <button className="admin-action-button" onClick={handleDeleteClick}>
           Delete
         </button>
       )}

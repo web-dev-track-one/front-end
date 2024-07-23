@@ -104,13 +104,12 @@ const EditTeam = ({
             image={image}
             index={index}
           />
-          <button className="edit-button" onClick={handleEditClick}>
+          <button className="admin-action-button" onClick={handleEditClick}>
             Edit
           </button>
         </>
       ) : (
         <div className="admin-edit-form">
-          <h1>Edit Team Member</h1>
           <form onSubmit={handleSubmit} id="editForm">
             <TextField
               label="Name"
