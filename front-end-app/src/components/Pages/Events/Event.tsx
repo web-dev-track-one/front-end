@@ -4,8 +4,8 @@ interface EventProps {
   title: string;
   author: string;
   body: string;
-  datePosted: Date;
-  dateOfEvent: Date;
+  datePosted: string;
+  dateOfEvent: string;
   applicableTo: string;
   image: string;
 }
@@ -19,9 +19,6 @@ const Announcement = ({
   applicableTo,
   image,
 }: EventProps) => {
-  const formattedDate = new Date(datePosted);
-  const formattedDateOfEvent = new Date(dateOfEvent);
-
   return (
     <div className="event">
       <div className="event-header">
@@ -33,13 +30,13 @@ const Announcement = ({
           <p>{body}</p>
         </div>
         <div className="event-image">
-          <img src={`data:image/jpeg;base64,${image}`} alt={title} />
+          <img src={image} alt={title} />
         </div>
       </div>
       <div className="event-footer">
-        <span>Date of the Event: {formattedDateOfEvent.toDateString()}</span>
+        <span>Date of the Event: {dateOfEvent.split("T")[0]}</span>
         <span>Applicable To: {applicableTo}</span>
-        <span>Posted: {formattedDate.toDateString()}</span>
+        <span>Posted: {datePosted.split("T")[0]}</span>
       </div>
     </div>
   );

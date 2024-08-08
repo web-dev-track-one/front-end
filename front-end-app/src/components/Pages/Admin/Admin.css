@@ -1,0 +1,119 @@
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: center;
+  font-weight: normal;
+  margin-bottom: 8px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.admin-head {
+  border-bottom: 3px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-page h2 {
+  padding-left: 20px;
+}
+
+.admin-boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminCategoryBox {
+}
+
+.adminCategoryBox-header {
+  display: flex;
+  justify-content: center;
+}
+
+.adminCategoryBox-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: auto;
+  margin-left: 2cm;
+  margin-right: 2cm;
+}
+
+.adminCategoryBox-content Button {
+  margin-top: 25px;
+}
+
+.admin-create-form Button {
+  margin-bottom: 0.5cm;
+}
+
+.admin-create-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+.admin-create-form h1 {
+  padding-bottom: 20px;
+}
+
+.admin-form-container {
+  margin-top: 2cm;
+}
+
+.search-form-buttons {
+  display: flex;
+  gap: 10vw;
+  justify-content: center;
+  margin: 1cm;
+}
+
+.deletable-doc.confirm-delete {
+  background-color: red;
+}
+
+.admin-action-button {
+  background-color: #1976d2; /* Blue background color */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.confirm-delete-button {
+  background-color: darkred;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.cancel-delete-button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.picture-input {
+  margin-bottom: 0.5cm;
+  display: flex;
+  position: relative;
+}
+
+.pciture-choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
+}

@@ -36,7 +36,7 @@
   justify-content: center;
   align-items: center;
   width: 40%; /* Adjusted to a percentage of the parent container for consistency */
-  max-width: none; /* Remove the max-width or adjust as necessary */
+  overflow: hidden;
 }
 
 .event-image img {

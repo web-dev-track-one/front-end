@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import Announcement from "./Announcement";
 import "./Announcements.css";
-
+import DeletableAnnouncement from "../Admin/DeleteDoc/DeleteAnnouncement";
+import { deleteDoc, editDoc } from "../Admin/helperFunctions";
+import EditableAnnouncement from "../Admin/EditDoc/EditAnnouncement";
 interface AnnouncementData {
+  _id: string;
   Title: string;
   Author: string;
   Body: string;
@@ -10,69 +13,100 @@ interface AnnouncementData {
   Date: string;
 }
 
-interface dataResponse {
-  announcements: AnnouncementData[];
-  totalAnnouncements: number;
+interface AnnouncementsProps {
+  announcementType: string;
+  docs: AnnouncementData[];
+  setDocs: React.Dispatch<React.SetStateAction<AnnouncementData[]>>;
+  loadMoreAnnouncements?: () => void;
+  totalAnnouncements?: number;
+  loading?: boolean;
 }
 
-const Announcements = () => {
-  const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
-  const [totalAnnouncements, setTotalAnnouncements] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const [limit] = useState(10);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    // Fetch announcements from backend
-    const fetchAnnouncements = async () => {
-      setLoading(true);
-      const response = await fetch(
-        `http://localhost:3000/announcements?offset=${offset}&limit=${limit}`
+const Announcements = ({
+  announcementType,
+  docs,
+  setDocs,
+  loadMoreAnnouncements,
+  totalAnnouncements,
+  loading,
+}: AnnouncementsProps) => {
+  const handleDeleteAnnouncement = async (id: string) => {
+    const success = await deleteDoc(id, "Announcements");
+    if (success) {
+      setDocs((prevAnnouncements) =>
+        prevAnnouncements.filter((announcement) => announcement._id !== id)
       );
+    }
+  };
 
-      if (!response.ok) {
-        console.error("Failed to fetch announcements");
-        return;
-      }
-      const data: dataResponse = await response.json();
-      setAnnouncements((prevAnnouncements) => [
-        ...prevAnnouncements,
-        ...data.announcements,
-      ]);
-
-      setTotalAnnouncements(data.totalAnnouncements);
-      setLoading(false);
-    };
-
-    fetchAnnouncements();
-  }, [offset]);
-
-  const loadMoreAnnouncements = () => {
-    setOffset((prevOffset) => prevOffset + limit);
+  const handleEditAnnouncement = async (
+    id: string,
+    updatedAnnouncement: AnnouncementData
+  ) => {
+    const success = await editDoc(id, updatedAnnouncement, "announcement");
+    if (success) {
+      setDocs((prevAnnouncements) =>
+        prevAnnouncements.map((announcement) =>
+          announcement._id === id
+            ? { ...announcement, ...updatedAnnouncement }
+            : announcement
+        )
+      );
+    }
   };
 
   return (
     <div className="announcements-container">
       <h1>Announcements</h1>
       <div className="announcements-list">
-        {announcements.map((announcement, index) => (
-          <Announcement
-            key={index}
-            title={announcement.Title}
-            author={announcement.Author}
-            body={announcement.Body}
-            keywords={announcement.Keywords}
-            date={announcement.Date}
-          />
+        {docs.map((announcement, index) => (
+          <>
+            {announcementType === "delete" ? (
+              <div className="deletable-announcement">
+                <DeletableAnnouncement
+                  _id={announcement._id}
+                  title={announcement.Title}
+                  author={announcement.Author}
+                  body={announcement.Body}
+                  keywords={announcement.Keywords}
+                  date={announcement.Date}
+                  onDelete={handleDeleteAnnouncement}
+                />
+              </div>
+            ) : announcementType === "view" ? (
+              <Announcement
+                key={index}
+                title={announcement.Title}
+                author={announcement.Author}
+                body={announcement.Body}
+                keywords={announcement.Keywords}
+                date={announcement.Date}
+              />
+            ) : (
+              <EditableAnnouncement
+                key={index}
+                _id={announcement._id}
+                title={announcement.Title}
+                author={announcement.Author}
+                body={announcement.Body}
+                keywords={announcement.Keywords}
+                date={announcement.Date}
+                onEdit={handleEditAnnouncement}
+              />
+            )}
+          </>
         ))}
       </div>
-      {announcements.length < totalAnnouncements && !loading && (
-        <div className="loadMoreButton-container">
-          <button className="loadMoreButton" onClick={loadMoreAnnouncements}>
-            Load More
-          </button>
-        </div>
-      )}
+      {announcementType === "view" &&
+        !loading &&
+        totalAnnouncements &&
+        docs.length < totalAnnouncements && (
+          <div className="loadMoreButton-container">
+            <button className="loadMoreButton" onClick={loadMoreAnnouncements}>
+              Load More
+            </button>
+          </div>
+        )}
       {loading && <p>Loading...</p>}
     </div>
   );

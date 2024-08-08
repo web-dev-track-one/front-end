@@ -1,78 +1,111 @@
 import { useEffect, useState } from "react";
 import Event from "./Event";
 import "./Events.css";
-import { off } from "process";
+import EditEvent from "../Admin/EditDoc/EditEvent";
+import DeleteEvent from "../Admin/DeleteDoc/DeleteEvent";
+import { deleteDoc, editDoc } from "../Admin/helperFunctions";
 
 interface EventData {
+  _id: string;
   Title: string;
   Author: string;
   Body: string;
-  DatePosted: Date;
-  DateOfEvent: Date;
-  ApplicableTo: string;
+  DatePosted: string;
+  DateOfEvent: string;
+  "Applicable to": string;
   Image: string;
 }
-interface dataResponse {
-  allEvents: EventData[];
-  totalEvents: number;
+
+interface EventsProps {
+  eventType: string;
+  docs: EventData[];
+  setDocs: React.Dispatch<React.SetStateAction<EventData[]>>;
+  loadMoreEvents?: () => void;
+  totalEvents?: number;
+  loading?: boolean;
 }
 
-const Events = () => {
-  const [events, setEvents] = useState<EventData[]>([]);
-  const [totalEvents, setTotalEvents] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const [limit] = useState(1);
-  const [loading, setLoading] = useState(false);
+const Events = ({
+  eventType,
+  docs,
+  setDocs,
+  loadMoreEvents,
+  totalEvents,
+  loading,
+}: EventsProps) => {
+  const handleDeleteEvent = async (id: string) => {
+    const success = await deleteDoc(id, "Events");
+    if (success) {
+      setDocs((prevEvents) => prevEvents.filter((event) => event._id !== id));
+    }
+  };
 
-  useEffect(() => {
-    // Fetch announcements from backend
-    setLoading(true);
-    const fetchEvents = async () => {
-      const response = await fetch(
-        `http://localhost:3000/events?offset=${offset}&limit=${limit}`
+  const handleEditEvent = async (id: string, updatedEvent: EventData) => {
+    const success = await editDoc(id, updatedEvent, "event");
+    if (success) {
+      setDocs((prevEvents) =>
+        prevEvents.map((event) =>
+          event._id === id ? { ...event, ...updatedEvent } : event
+        )
       );
-      if (!response.ok) {
-        console.error("Failed to fetch events");
-        return;
-      }
-
-      const data: dataResponse = await response.json();
-      setTotalEvents(data.totalEvents);
-      setEvents((prevEvents) => [...prevEvents, ...data.allEvents]);
-      setLoading(false);
-    };
-
-    fetchEvents();
-  }, [offset]);
-
-  const loadMoreEvents = () => {
-    setOffset((prevOffset) => prevOffset + limit);
+    }
   };
 
   return (
     <div className="events-container">
       <h1>Events</h1>
       <div className="events-list">
-        {events.map((event, index) => (
-          <Event
-            key={index}
-            title={event.Title}
-            author={event.Author}
-            body={event.Body}
-            dateOfEvent={event.DateOfEvent}
-            datePosted={event.DatePosted}
-            applicableTo={event.ApplicableTo}
-            image={event.Image}
-          />
+        {docs.map((event, index) => (
+          <>
+            {eventType === "view" ? (
+              <Event
+                key={index}
+                title={event.Title}
+                author={event.Author}
+                body={event.Body}
+                dateOfEvent={event.DateOfEvent}
+                datePosted={event.DatePosted}
+                applicableTo={event["Applicable to"]}
+                image={event.Image}
+              />
+            ) : eventType === "delete" ? (
+              <DeleteEvent
+                _id={event._id}
+                title={event.Title}
+                author={event.Author}
+                body={event.Body}
+                dateOfEvent={event.DateOfEvent}
+                datePosted={event.DatePosted}
+                applicableTo={event["Applicable to"]}
+                image={event.Image}
+                onDelete={handleDeleteEvent}
+              />
+            ) : (
+              <EditEvent
+                _id={event._id}
+                title={event.Title}
+                author={event.Author}
+                body={event.Body}
+                dateOfEvent={event.DateOfEvent}
+                datePosted={event.DatePosted}
+                applicableTo={event["Applicable to"]}
+                image={event.Image}
+                onEdit={handleEditEvent}
+              />
+            )}
+          </>
         ))}
       </div>
-      {events.length < totalEvents && !loading && (
-        <div className="loadMoreButton-container">
-          <button className="loadMoreButton" onClick={loadMoreEvents}>
-            Load More
-          </button>
-        </div>
-      )}
+      {eventType === "view" &&
+        !loading &&
+        totalEvents &&
+        docs.length < totalEvents && (
+          <div className="loadMoreButton-container">
+            <button className="loadMoreButton" onClick={loadMoreEvents}>
+              Load More
+            </button>
+          </div>
+        )}
       {loading && <p>Loading...</p>}
     </div>
   );
