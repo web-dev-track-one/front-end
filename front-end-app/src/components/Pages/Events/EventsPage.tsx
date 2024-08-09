@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Events from "./Events";
 
 interface EventData {
@@ -6,8 +6,8 @@ interface EventData {
   Title: string;
   Author: string;
   Body: string;
-  DatePosted: Date;
-  DateOfEvent: Date;
+  DatePosted: string;
+  DateOfEvent: string;
   "Applicable to": string;
   Image: string;
 }
@@ -28,7 +28,7 @@ const EventsPage = () => {
     setLoading(true);
     const fetchEvents = async () => {
       const response = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/events?offset=${offset}&limit=${limit}`
+        import.meta.env.VITE_BACKEND_URL + `/events?offset=${offset}&limit=${limit}`
       );
       if (!response.ok) {
         console.error("Failed to fetch events");

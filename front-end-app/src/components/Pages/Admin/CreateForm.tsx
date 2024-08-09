@@ -70,7 +70,7 @@ const CreateForm = ({ type }: CreateFormProps) => {
       try {
         // get urls needed for file upload and for the file to be accessed in the database
         const { uploadUrl, fileUrl } = await fetch(
-          process.env.REACT_APP_BACKEND_URL + "/s3Url"
+          import.meta.env.VITE_BACKEND_URL + "/s3Url"
         ).then((res) => res.json());
 
         console.log(`Secure URL: ${uploadUrl} Hehe`);
@@ -103,7 +103,7 @@ const CreateForm = ({ type }: CreateFormProps) => {
 
     try {
       const addressOfRequest =
-        process.env.REACT_APP_BACKEND_URL + `${type.replace(/\s+/g, "").toLowerCase()}`;
+        import.meta.env.VITE_BACKEND_URL + `${type.replace(/\s+/g, "").toLowerCase()}`;
 
       const response = await fetch(addressOfRequest, {
         method: "POST",

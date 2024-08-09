@@ -1,12 +1,10 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { Route, Navigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 interface ProtectedRouteProps {
   element: React.ComponentType<any>;
   token: string | null;
-  setAuthToken: Dispatch<SetStateAction<string | null>>;
 }
 
 const ProtectedRoute = ({
@@ -14,14 +12,13 @@ const ProtectedRoute = ({
   token,
   ...rest
 }: ProtectedRouteProps) => {
-  let location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     const verifyToken = async () => {
       try {
         if (token) {
           // Send a request to the server to verify token validity
-          const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/auth/verify", {
+          const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/auth/verify", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

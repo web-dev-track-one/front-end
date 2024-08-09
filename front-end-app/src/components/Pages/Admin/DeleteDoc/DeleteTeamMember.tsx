@@ -37,7 +37,7 @@ const DeletableTeamMember = ({
   };
 
   const deleteImage = async (imageUrl: string) => {
-    await fetch(process.env.REACT_APP_BACKEND_URL + "/s3/s3Url", {
+    await fetch(import.meta.env.VITE_BACKEND_URL + "/s3/s3Url", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

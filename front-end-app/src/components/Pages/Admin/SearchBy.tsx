@@ -73,7 +73,7 @@ const SearchBy = ({ eventType, docType }: SearchByProps) => {
 
     try {
       const response = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/search/${docType
+        import.meta.env.VITE_BACKEND_URL + `/search/${docType
           .replace(/\s+/g, "")
           .toLowerCase()}?q=${searchQuery}`
       );

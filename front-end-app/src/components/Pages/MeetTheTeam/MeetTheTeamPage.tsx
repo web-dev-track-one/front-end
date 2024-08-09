@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MeetTheTeam from "./MeetTheTeam";
 
 interface TeamMember {
@@ -11,13 +11,11 @@ interface TeamMember {
 
 const MeetTheTeamPage = () => {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Fetch team members from backend
     const fetchTeamMembers = async () => {
-      setLoading(true);
-      const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/team`);
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/team`);
 
       if (!response.ok) {
         console.error("Failed to fetch team members");
@@ -25,7 +23,6 @@ const MeetTheTeamPage = () => {
       }
       const data: TeamMember[] = await response.json();
       setTeamMembers(data);
-      setLoading(false);
     };
 
     fetchTeamMembers();

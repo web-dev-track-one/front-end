@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Announcement from "./Announcement";
 import "./Announcements.css";
 import DeletableAnnouncement from "../Admin/DeleteDoc/DeleteAnnouncement";

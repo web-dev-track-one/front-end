@@ -4,7 +4,6 @@ import UoftLogo from "../../assets/uoft_logo.png";
 import { useNavigate } from "react-router-dom";
 import InstagramIcon from "../../assets/ig.svg";
 import DiscordIcon from "../../assets/discord.svg";
-import AppBar from "@mui/material/AppBar";
 
 const Footer = () => {
   const navigate = useNavigate();
