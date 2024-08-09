@@ -11,29 +11,33 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 import {useState} from "react";
 
+import './global.css';
+
 const MainBody = () => {
     const [authToken, setAuthToken] = useState<string | null>(null);
 
     return (
-        <Routes>
-            <Route element={<Home/>} path="/"/>
-            <Route element={<Announcements/>} path="/announcements"/>
-            <Route element={<Events/>} path="/events"/>
-            <Route element={<DueDates/>} path="/due-dates"/>
-            <Route element={<MeetTheTeam/>} path="/meet-the-team"/>
-            <Route element={<ContactUs/>} path="/contact-us"/>
-            <Route path="/login" element={<Login setAuthToken={setAuthToken}/>}/>
-            <Route
-                path="/admin"
-                element={
-                    <ProtectedRoute
-                        token={localStorage.getItem("token")}
-                        element={Admin}
-                        setAuthToken={setAuthToken}
-                    />
-                }
-            />
-        </Routes>
+        <div className={'main-body'}>
+            <Routes>
+                <Route element={<Home/>} path="/"/>
+                <Route element={<Announcements/>} path="/announcements"/>
+                <Route element={<Events/>} path="/events"/>
+                <Route element={<DueDates/>} path="/due-dates"/>
+                <Route element={<MeetTheTeam/>} path="/meet-the-team"/>
+                <Route element={<ContactUs/>} path="/contact-us"/>
+                <Route path="/login" element={<Login setAuthToken={setAuthToken}/>}/>
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute
+                            token={localStorage.getItem("token")}
+                            element={Admin}
+                            setAuthToken={setAuthToken}
+                        />
+                    }
+                />
+            </Routes>
+        </div>
     );
 };
 
