@@ -1,6 +1,6 @@
 // src/components/Login.js
-import React, { Dispatch, SetStateAction } from "react";
-import { useState, useEffect } from "react";
+import React from "react";
+import { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 interface LoginResponse {
@@ -8,11 +8,7 @@ interface LoginResponse {
   message?: string;
 }
 
-interface LoginProps {
-  setAuthToken: Dispatch<SetStateAction<string | null>>;
-}
-
-const Login = ({ setAuthToken }: LoginProps) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState<string>("");
@@ -23,7 +19,7 @@ const Login = ({ setAuthToken }: LoginProps) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -33,7 +29,6 @@ const Login = ({ setAuthToken }: LoginProps) => {
       if (response.ok) {
         // Save the token (e.g., in localStorage or a cookie)
         localStorage.setItem("token", data.token);
-        setAuthToken(data.token);
 
         console.log("Login successful");
         navigate("/admin");

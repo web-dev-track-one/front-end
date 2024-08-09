@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import DueDates from "./DueDates";
-import exp from "constants";
 
 interface DueDateData {
   _id: string;
@@ -30,7 +29,7 @@ const DueDatesPage = () => {
 
     const fetchDueDates = async () => {
       const response = await fetch(
-        `http://localhost:3000/duedates?offset=${offset}&limit=${limit}`
+        import.meta.env.VITE_BACKEND_URL + `/duedates?offset=${offset}&limit=${limit}`
       );
       if (!response.ok) {
         console.error("Failed to fetch due dates");

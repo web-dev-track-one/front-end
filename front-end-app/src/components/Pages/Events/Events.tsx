@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Event from "./Event";
 import "./Events.css";
 import EditEvent from "../Admin/EditDoc/EditEvent";
