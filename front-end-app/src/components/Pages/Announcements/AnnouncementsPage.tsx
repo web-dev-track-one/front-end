@@ -27,7 +27,7 @@ const AnnouncementsPage = () => {
     const fetchAnnouncements = async () => {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:3000/announcements?offset=${offset}&limit=${limit}`
+        process.env.REACT_APP_BACKEND_URL + `/announcements?offset=${offset}&limit=${limit}`
       );
 
       if (!response.ok) {

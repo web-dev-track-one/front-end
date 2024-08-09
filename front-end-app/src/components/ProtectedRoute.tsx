@@ -21,7 +21,7 @@ const ProtectedRoute = ({
       try {
         if (token) {
           // Send a request to the server to verify token validity
-          const response = await fetch("http://localhost:3000/auth/verify", {
+          const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/auth/verify", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

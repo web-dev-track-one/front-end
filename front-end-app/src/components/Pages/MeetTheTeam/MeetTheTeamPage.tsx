@@ -17,7 +17,7 @@ const MeetTheTeamPage = () => {
     // Fetch team members from backend
     const fetchTeamMembers = async () => {
       setLoading(true);
-      const response = await fetch(`http://localhost:3000/team`);
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/team`);
 
       if (!response.ok) {
         console.error("Failed to fetch team members");

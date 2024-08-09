@@ -14,7 +14,7 @@ export const deleteDoc = async (
       return false;
     }
 
-    const auth = await fetch("http://localhost:3000/auth/verify", {
+    const auth = await fetch(process.env.REACT_APP_BACKEND_URL + "/auth/verify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,22 +30,22 @@ export const deleteDoc = async (
     let response = null;
     if (componentName === "Announcements") {
       console.log(`Delete request from component: ${componentName}`);
-      response = await fetch(`http://localhost:3000/announcement/${id}`, {
+      response = await fetch(process.env.REACT_APP_BACKEND_URL + `/announcement/${id}`, {
         method: "DELETE",
       });
     } else if (componentName === "Events") {
       console.log(`Delete request from component: ${componentName}`);
-      response = await fetch(`http://localhost:3000/event/${id}`, {
+      response = await fetch(process.env.REACT_APP_BACKEND_URL + `/event/${id}`, {
         method: "DELETE",
       });
     } else if (componentName === "Due Dates") {
       console.log(`Delete request from component: ${componentName}`);
-      response = await fetch(`http://localhost:3000/duedate/${id}`, {
+      response = await fetch(process.env.REACT_APP_BACKEND_URL + `/duedate/${id}`, {
         method: "DELETE",
       });
     } else if (componentName === "Team") {
       console.log(`Delete request from component: ${componentName}`);
-      response = await fetch(`http://localhost:3000/team/${id}`, {
+      response = await fetch(process.env.REACT_APP_BACKEND_URL + `/team/${id}`, {
         method: "DELETE",
       });
     }
@@ -70,7 +70,7 @@ export const editDoc = async (
 ) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/${componentName}/${id}`,
+      process.env.REACT_APP_BACKEND_URL + `/${componentName}/${id}`,
       {
         method: "PUT",
         headers: {

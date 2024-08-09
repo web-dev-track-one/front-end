@@ -28,7 +28,7 @@ const EventsPage = () => {
     setLoading(true);
     const fetchEvents = async () => {
       const response = await fetch(
-        `http://localhost:3000/events?offset=${offset}&limit=${limit}`
+        process.env.REACT_APP_BACKEND_URL + `/events?offset=${offset}&limit=${limit}`
       );
       if (!response.ok) {
         console.error("Failed to fetch events");

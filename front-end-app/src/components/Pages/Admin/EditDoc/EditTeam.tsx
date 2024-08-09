@@ -43,7 +43,7 @@ const EditTeam = ({
   };
 
   const deletePreviousImage = async (imageUrl: string) => {
-    await fetch("http://localhost:3000/s3/s3Url", {
+    await fetch(process.env.REACT_APP_BACKEND_URL + "/s3/s3Url", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const EditTeam = ({
         }
 
         const { uploadUrl, fileUrl } = await fetch(
-          "http://localhost:3000/s3Url"
+          process.env.REACT_APP_BACKEND_URL + "/s3Url"
         ).then((res) => res.json());
 
         await fetch(uploadUrl, {

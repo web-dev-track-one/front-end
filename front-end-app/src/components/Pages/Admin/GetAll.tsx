@@ -56,7 +56,7 @@ const GetAll = ({ eventType, docType }: GetAlltoDeleteProps) => {
   useEffect(() => {
     const fetchDocs = async () => {
       const response = await fetch(
-        `http://localhost:3000/${docType.replace(/\s+/g, "").toLowerCase()}`
+        process.env.REACT_APP_BACKEND_URL + `/${docType.replace(/\s+/g, "").toLowerCase()}`
       );
       if (!response.ok) {
         console.error("Failed to fetch announcements");

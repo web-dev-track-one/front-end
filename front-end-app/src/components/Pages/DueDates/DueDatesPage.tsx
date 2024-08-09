@@ -30,7 +30,7 @@ const DueDatesPage = () => {
 
     const fetchDueDates = async () => {
       const response = await fetch(
-        `http://localhost:3000/duedates?offset=${offset}&limit=${limit}`
+        process.env.REACT_APP_BACKEND_URL + `/duedates?offset=${offset}&limit=${limit}`
       );
       if (!response.ok) {
         console.error("Failed to fetch due dates");

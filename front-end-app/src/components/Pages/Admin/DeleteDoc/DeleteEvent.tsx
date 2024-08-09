@@ -41,7 +41,7 @@ const DeletableEvent = ({
   };
 
   const deleteImage = async (imageUrl: string) => {
-    await fetch("http://localhost:3000/s3/s3Url", {
+    await fetch(process.env.REACT_APP_BACKEND_URL + "/s3/s3Url", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
