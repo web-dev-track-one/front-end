@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import TeamMember from "./TeamMember.tsx";
 import "./MeetTheTeam.css";
 import EditTeam from "../Admin/EditDoc/EditTeam.tsx";
