@@ -1,6 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import {Box} from "@mui/material";
-import styles from "../NavBar.module.css";
+import '../NavBar.css';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
@@ -37,11 +37,11 @@ const LowerNav = () => {
         <AppBar position="static">
             <Box
                 sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}
-                className={styles.box}
+                className={'box'}
             >
                 {pages.map((page, index) => (
                     <Box
-                        className={styles.link_boxes}
+                        className={'link_boxes'}
                         onClick={handleClick}
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={() => handleMouseLeave()}
@@ -50,7 +50,7 @@ const LowerNav = () => {
                             transition: "background-color 0.2s ease",
                         }}
                     >
-                        <p className={styles.link_text}>{page.toUpperCase()}</p>
+                        <p className={'link_text'}>{page.toUpperCase()}</p>
                     </Box>
                 ))}
             </Box>
