@@ -30,7 +30,7 @@ html {
 }
 
 .main-body {
-    min-height: calc(100vh - 418px);
+    min-height: calc(100vh - 418.49px);
 
     display: flex;
     flex-direction: column;
