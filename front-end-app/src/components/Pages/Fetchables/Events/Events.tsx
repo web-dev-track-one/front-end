@@ -1,5 +1,5 @@
 import Event from "./Event.tsx";
-import "./Events.css";
+import "../FetchablesSyles.css";
 import EditEvent from "../../Admin/EditDoc/EditEvent.tsx";
 import DeleteEvent from "../../Admin/DeleteDoc/DeleteEvent.tsx";
 import { deleteDoc, editDoc } from "../../Admin/helperFunctions.ts";
@@ -51,9 +51,9 @@ const Events = ({
   };
 
   return (
-    <div className="events-container">
+    <div className="fetchables-container">
       <h1>Events</h1>
-      <div className="events-list">
+      <div className="fetchables-list">
         {docs.map((event, index) => (
           <>
             {eventType === "view" ? (

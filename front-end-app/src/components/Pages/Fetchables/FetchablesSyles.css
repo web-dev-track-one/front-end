@@ -1,0 +1,47 @@
+.fetchables-container {
+  padding: 16px;
+  background-color: #f0f0f0; /* Light grey background color */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the container */
+}
+
+.announcements-container {
+    justify-content: center;
+}
+
+.fetchables-container h1 {
+  text-align: center;
+  margin-bottom: 16px;
+  background-color: #3f6ebf; /* Blue background color for the title */
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.fetchables-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.loadMoreButton-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.loadMoreButton {
+    background-color: #3f6ebf;
+    color: white;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    justify-content: center;
+    font-size: large;
+}
+
+.loadMoreButton:hover {
+    background-color: #355b9e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
