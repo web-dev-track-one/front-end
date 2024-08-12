@@ -1,8 +1,8 @@
-import Announcement from "./Announcement";
+import Announcement from "./Announcement.tsx";
 import "./Announcements.css";
-import DeletableAnnouncement from "../Admin/DeleteDoc/DeleteAnnouncement";
-import { deleteDoc, editDoc } from "../Admin/helperFunctions";
-import EditableAnnouncement from "../Admin/EditDoc/EditAnnouncement";
+import DeletableAnnouncement from "../../Admin/DeleteDoc/DeleteAnnouncement.tsx";
+import { deleteDoc, editDoc } from "../../Admin/helperFunctions.ts";
+import EditableAnnouncement from "../../Admin/EditDoc/EditAnnouncement.tsx";
 interface AnnouncementData {
   _id: string;
   Title: string;

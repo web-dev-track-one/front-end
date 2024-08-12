@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Dispatch, SetStateAction } from "react";
 import { useState, useEffect } from "react";
 import React from "react";
 import AdminCategoryBox from "./AdminCategoryBox";
@@ -8,11 +7,8 @@ import "./Admin.css";
 import CreateForm from "./CreateForm";
 import DeleteForm from "./DeleteForm";
 import EditForm from "./EditForm";
-interface AdminProps {
-  setAuthToken: Dispatch<SetStateAction<string | null>>;
-}
 
-const Admin = ({ setAuthToken }: AdminProps) => {
+const Admin = () => {
   const navigate = useNavigate();
   const [create, setCreate] = React.useState(false);
   const [deleteForm, setdeleteForm] = React.useState(false);
@@ -60,7 +56,6 @@ const Admin = ({ setAuthToken }: AdminProps) => {
             onClick={() => {
               localStorage.removeItem("token");
               console.log("Token removed from local storage");
-              setAuthToken(null);
               navigate("/");
             }}
           >

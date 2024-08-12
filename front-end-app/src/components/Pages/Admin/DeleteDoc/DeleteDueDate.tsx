@@ -1,4 +1,4 @@
-import DueDate from "../../DueDates/DueDate";
+import DueDate from "../../Fetchables/DueDates/DueDate";
 import { useState } from "react";
 interface DueDateData {
   _id: string;

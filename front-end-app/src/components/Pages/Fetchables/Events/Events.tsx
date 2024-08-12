@@ -1,8 +1,8 @@
-import Event from "./Event";
+import Event from "./Event.tsx";
 import "./Events.css";
-import EditEvent from "../Admin/EditDoc/EditEvent";
-import DeleteEvent from "../Admin/DeleteDoc/DeleteEvent";
-import { deleteDoc, editDoc } from "../Admin/helperFunctions";
+import EditEvent from "../../Admin/EditDoc/EditEvent.tsx";
+import DeleteEvent from "../../Admin/DeleteDoc/DeleteEvent.tsx";
+import { deleteDoc, editDoc } from "../../Admin/helperFunctions.ts";
 
 interface EventData {
   _id: string;

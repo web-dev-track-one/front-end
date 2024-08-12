@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Announcements from "../Announcements/Announcements";
-import DueDates from "../DueDates/DueDates";
-import Events from "../Events/Events";
+import Announcements from "../Fetchables/Announcements/Announcements";
+import DueDates from "../Fetchables/DueDates/DueDates";
+import Events from "../Fetchables/Events/Events";
 import Teams from "../MeetTheTeam/MeetTheTeam";
 
 interface AnnouncementData {

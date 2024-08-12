@@ -1,4 +1,4 @@
-import Announcement from "../../Announcements/Announcement";
+import Announcement from "../../Fetchables/Announcements/Announcement";
 import { useState } from "react";
 
 interface DeletableAnnouncementProps {

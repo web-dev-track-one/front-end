@@ -1,4 +1,4 @@
-import Event from "../../Events/Event";
+import Event from "../../Fetchables/Events/Event";
 import { useState } from "react";
 
 interface EventDataProps {

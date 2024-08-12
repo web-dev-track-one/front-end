@@ -4,10 +4,10 @@ import ContactUs from "./components/Pages/ContactUs/ContactUs.tsx";
 import Login from "./components/Pages/Login/Login";
 import Admin from "./components/Pages/Admin/Admin";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AnnouncementsPage from "./components/Pages/Announcements/AnnouncementsPage.tsx";
-import EventsPage from "./components/Pages/Events/EventsPage.tsx";
+import AnnouncementsPage from "./components/Pages/Fetchables/Announcements/AnnouncementsPage.tsx";
+import EventsPage from "./components/Pages/Fetchables/Events/EventsPage.tsx";
 import MeetTheTeamPage from "./components/Pages/MeetTheTeam/MeetTheTeamPage.tsx";
-import DueDatesPage from "./components/Pages/DueDates/DueDatesPage.tsx";
+import DueDatesPage from "./components/Pages/Fetchables/DueDates/DueDatesPage.tsx";
 
 const MainBody = () => {
     return (

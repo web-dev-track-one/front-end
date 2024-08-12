@@ -1,8 +1,8 @@
 import "./DueDates.css";
-import DueDate from "./DueDate";
-import { deleteDoc, editDoc } from "../Admin/helperFunctions";
-import DeletableDueDate from "../Admin/DeleteDoc/DeleteDueDate";
-import EditableDueDate from "../Admin/EditDoc/EditDueDate";
+import DueDate from "./DueDate.tsx";
+import { deleteDoc, editDoc } from "../../Admin/helperFunctions.ts";
+import DeletableDueDate from "../../Admin/DeleteDoc/DeleteDueDate.tsx";
+import EditableDueDate from "../../Admin/EditDoc/EditDueDate.tsx";
 
 interface DueDateData {
   _id: string;
