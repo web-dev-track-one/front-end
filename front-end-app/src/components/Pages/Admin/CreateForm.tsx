@@ -103,7 +103,8 @@ const CreateForm = ({ type }: CreateFormProps) => {
 
     try {
       const addressOfRequest =
-        import.meta.env.VITE_BACKEND_URL + `${type.replace(/\s+/g, "").toLowerCase()}`;
+        import.meta.env.VITE_BACKEND_URL +
+        `/${type.replace(/\s+/g, "").toLowerCase()}`;
 
       const response = await fetch(addressOfRequest, {
         method: "POST",
