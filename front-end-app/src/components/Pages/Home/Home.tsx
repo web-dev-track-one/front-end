@@ -65,7 +65,7 @@ const Home = () => {
                 Applicable to: {dueDate["Applicable to"]}
               </p>
               <p className="due-date-text due-date-date">
-                Due Date: {dueDate["Due Date"].split("T")[0]}
+                <b>Due Date: {dueDate["Due Date"].split("T")[0]}</b>
               </p>
             </div>
           ))}
