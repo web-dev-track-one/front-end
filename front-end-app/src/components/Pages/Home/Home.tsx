@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="card" style={{ width: "30%" }}>
+      <div className="card-home" style={{ width: "30%" }}>
         <h2 className="card-title">About Us</h2>
 
         <p className="about-us-text">
