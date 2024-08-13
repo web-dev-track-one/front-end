@@ -38,7 +38,7 @@ const Home = () => {
 
     return (
         <div className='container'>
-            <div className="card" style={{width: "30%"}}>
+            <div className="home-card" style={{width: "30%"}}>
                 <h2 className="card-title">About Us</h2>
 
                 <p className="about-us-text">
@@ -53,7 +53,7 @@ const Home = () => {
                 </p>
             </div>
 
-            <div className="card" style={{width: "60%"}}>
+            <div className="home-card" style={{width: "60%"}}>
                 <h2 className="card-title">Upcoming Due Dates</h2>
 
                 <div className="due-dates">
