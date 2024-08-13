@@ -41,6 +41,7 @@ const LowerNav = () => {
             >
                 {pages.map((page, index) => (
                     <Box
+                        key={index}
                         className={'link_boxes'}
                         onClick={handleClick}
                         onMouseEnter={() => handleMouseEnter(index)}
