@@ -1,61 +1,58 @@
 .container {
-    display: flex;
-    position: relative;
-    justify-content: space-around;
-    padding: 20px;
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  padding: 20px;
 }
 
-.card {
-    background-color: #f9f9f9;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-
-
-    height: 100vh;
+.card-home {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
 }
 
 .card-title {
-    background-color: #3a6ea5;
-    color: white;
-    padding: 10px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    margin: -20px -20px 10px -20px;
-    text-align: center;
+  background-color: #3a6ea5;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin: -20px -20px 10px -20px;
+  text-align: center;
 }
 
 .about-us-text {
-    margin: 0;
-    padding: 10px;
-    color: #333;
-    font-size: calc(1vw + 1vh);
+  margin: 0;
+  padding: 10px;
+  color: #333;
+  font-size: calc(1vw + 1vh);
 }
 
 .due-dates {
-    height: fit-content;
+  height: fit-content;
 }
 
 .due-date {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 
-    text-align: center;
+  text-align: center;
 }
 
 .due-date .due-date-title {
-    font-size: 14pt;
-    width: 70%;
-    text-align: left;
+  font-size: 14pt;
+  width: 70%;
+  text-align: left;
 }
 
 .due-date .due-date-text {
-    font-size: 12pt;
-    width: 10%;
+  font-size: 12pt;
+  width: 10%;
 }
 
 .due-date .due-date-date {
-    color: brown;
+  color: brown;
 }
