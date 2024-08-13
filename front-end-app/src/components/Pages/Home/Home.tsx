@@ -56,9 +56,9 @@ const Home = () => {
       <div className="card-home" style={{ width: "60%" }}>
         <h2 className="card-title">Upcoming Due Dates</h2>
 
-        <div className="due-dates">
+        <div>
           {dueDates.map((dueDate, index) => (
-            <div key={index} className="due-date">
+            <div key={index} className={"due-date " + (index !== 5 ? "due-date-line" : "due-date-bottom")}>
               <h3 className="due-date-title">{dueDate.Title}</h3>
               <p className="due-date-text">{dueDate.Author}</p>
               <p className="due-date-text">

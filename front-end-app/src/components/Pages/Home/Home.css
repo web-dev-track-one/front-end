@@ -29,17 +29,20 @@
   font-size: calc(1vw + 1vh);
 }
 
-.due-dates {
-  height: fit-content;
-}
-
 .due-date {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
 
   text-align: center;
+}
+
+.due-date-line {
+  border-bottom: 1px solid #ccc;
+}
+
+.due-date-bottom {
+  margin-bottom: -10px;
 }
 
 .due-date .due-date-title {
