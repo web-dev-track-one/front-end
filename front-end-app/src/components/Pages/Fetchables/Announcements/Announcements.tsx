@@ -1,8 +1,8 @@
-import Announcement from "./Announcement";
-import "./Announcements.css";
-import DeletableAnnouncement from "../Admin/DeleteDoc/DeleteAnnouncement";
-import { deleteDoc, editDoc } from "../Admin/helperFunctions";
-import EditableAnnouncement from "../Admin/EditDoc/EditAnnouncement";
+import Announcement from "./Announcement.tsx";
+import "../FetchablesSyles.css";
+import DeletableAnnouncement from "../../Admin/DeleteDoc/DeleteAnnouncement.tsx";
+import { deleteDoc, editDoc } from "../../Admin/helperFunctions.ts";
+import EditableAnnouncement from "../../Admin/EditDoc/EditAnnouncement.tsx";
 interface AnnouncementData {
   _id: string;
   Title: string;
@@ -55,13 +55,13 @@ const Announcements = ({
   };
 
   return (
-    <div className="announcements-container">
+    <div className="fetchables-container announcements-container">
       <h1>Announcements</h1>
-      <div className="announcements-list">
+      <div className="fetchables-list">
         {docs.map((announcement, index) => (
           <>
             {announcementType === "delete" ? (
-              <div className="deletable-announcement">
+              <div>
                 <DeletableAnnouncement
                   _id={announcement._id}
                   title={announcement.Title}

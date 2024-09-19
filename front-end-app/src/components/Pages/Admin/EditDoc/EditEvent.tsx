@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
-import Event from "../../Events/Event";
+import Event from "../../Fetchables/Events/Event";
 
 interface EditEventProps {
   _id: string;

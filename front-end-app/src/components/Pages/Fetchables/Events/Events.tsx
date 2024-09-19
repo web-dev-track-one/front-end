@@ -1,8 +1,8 @@
-import Event from "./Event";
-import "./Events.css";
-import EditEvent from "../Admin/EditDoc/EditEvent";
-import DeleteEvent from "../Admin/DeleteDoc/DeleteEvent";
-import { deleteDoc, editDoc } from "../Admin/helperFunctions";
+import Event from "./Event.tsx";
+import "../FetchablesSyles.css";
+import EditEvent from "../../Admin/EditDoc/EditEvent.tsx";
+import DeleteEvent from "../../Admin/DeleteDoc/DeleteEvent.tsx";
+import { deleteDoc, editDoc } from "../../Admin/helperFunctions.ts";
 
 interface EventData {
   _id: string;
@@ -51,9 +51,9 @@ const Events = ({
   };
 
   return (
-    <div className="events-container">
+    <div className="fetchables-container">
       <h1>Events</h1>
-      <div className="events-list">
+      <div className="fetchables-list">
         {docs.map((event, index) => (
           <>
             {eventType === "view" ? (

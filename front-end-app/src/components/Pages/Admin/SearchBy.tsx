@@ -1,8 +1,8 @@
 import { TextField, Button } from "@mui/material";
 import "./Admin.css";
-import Announcements from "../Announcements/Announcements";
-import DueDates from "../DueDates/DueDates";
-import Events from "../Events/Events";
+import Announcements from "../Fetchables/Announcements/Announcements";
+import DueDates from "../Fetchables/DueDates/DueDates";
+import Events from "../Fetchables/Events/Events";
 import Teams from "../MeetTheTeam/MeetTheTeam";
 import { useState, useEffect } from "react";
 

@@ -1,5 +1,5 @@
 import Toolbar from "@mui/material/Toolbar";
-import styles from "../NavBar.module.css";
+import '../NavBar.css';
 import Box from "@mui/material/Box";
 import UoftLogo from "../../../assets/uoft_logo.png";
 import AppBar from "@mui/material/AppBar";
@@ -14,7 +14,7 @@ const UpperNav = () => {
 
     return (
         <AppBar position='static'>
-            <Toolbar className={styles.toolbar}>
+            <Toolbar className={'toolbar'} sx={{justifyContent: 'space-between'}}>
                 <Box
                     onClick={handleClick}
                     component="img"
@@ -25,6 +25,7 @@ const UpperNav = () => {
                     alt="uoft_logo"
                     src={UoftLogo}
                 />
+                <p className={'trackone_logo'}>TrackOne</p>
             </Toolbar>
         </AppBar>
     );

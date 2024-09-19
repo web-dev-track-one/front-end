@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Announcements from "./Announcements";
+import Announcements from "./Announcements.tsx";
 
 interface AnnouncementData {
   _id: string;

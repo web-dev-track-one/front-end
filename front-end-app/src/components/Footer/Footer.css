@@ -6,6 +6,9 @@
   display: flex;
   padding-left: 2cm;
   align-items: center;
+
+  margin-top: auto;
+  height: 175px;
 }
 .footer-logo {
   align-items: center;

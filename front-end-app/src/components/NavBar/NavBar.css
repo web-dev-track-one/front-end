@@ -21,3 +21,12 @@
     font-style: normal;
     font-weight: 100;
 }
+
+.trackone_logo {
+    font-size: 32pt;
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+
+    margin-right: 50px;
+    padding-top: 20px;
+}

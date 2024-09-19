@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #f0f0f0; /* Light grey background color */
   padding: 20px;
+  min-height: inherit;
 }
 
 .login-container {

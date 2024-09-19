@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Events from "./Events";
+import Events from "./Events.tsx";
 
 interface EventData {
   _id: string;

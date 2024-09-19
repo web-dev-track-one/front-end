@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
-import Announcement from "../../Announcements/Announcement";
+import Announcement from "../../Fetchables/Announcements/Announcement";
 
 interface EditableAnnouncementProps {
   _id: string;

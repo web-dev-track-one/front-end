@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import DueDates from "./DueDates";
+import DueDates from "./DueDates.tsx";
 
 interface DueDateData {
   _id: string;

@@ -3,20 +3,16 @@
   position: relative;
   justify-content: space-around;
   padding: 20px;
-  align-items: stretch;
 }
 
-.card {
+.card-home {
   background-color: #f9f9f9;
   border-radius: 15px;
-  position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 45%;
   padding: 20px;
-  height: 50vh;
 }
 
-.card h2 {
+.card-title {
   background-color: #3a6ea5;
   color: white;
   padding: 10px;
@@ -26,15 +22,40 @@
   text-align: center;
 }
 
-.card1 {
-  width: 30%;
-}
-.card2 {
-  width: 60%;
-}
-.card p {
+.about-us-text {
   margin: 0;
   padding: 10px;
   color: #333;
   font-size: calc(1vw + 1vh);
+}
+
+.due-date {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  text-align: center;
+}
+
+.due-date-line {
+  border-bottom: 1px solid #ccc;
+}
+
+.due-date-bottom {
+  margin-bottom: -10px;
+}
+
+.due-date .due-date-title {
+  font-size: 14pt;
+  width: 70%;
+  text-align: left;
+}
+
+.due-date .due-date-text {
+  font-size: 12pt;
+  width: 10%;
+}
+
+.due-date .due-date-date {
+  color: brown;
 }

@@ -1,8 +1,8 @@
-import "./DueDates.css";
-import DueDate from "./DueDate";
-import { deleteDoc, editDoc } from "../Admin/helperFunctions";
-import DeletableDueDate from "../Admin/DeleteDoc/DeleteDueDate";
-import EditableDueDate from "../Admin/EditDoc/EditDueDate";
+import "../FetchablesSyles.css";
+import DueDate from "./DueDate.tsx";
+import { deleteDoc, editDoc } from "../../Admin/helperFunctions.ts";
+import DeletableDueDate from "../../Admin/DeleteDoc/DeleteDueDate.tsx";
+import EditableDueDate from "../../Admin/EditDoc/EditDueDate.tsx";
 
 interface DueDateData {
   _id: string;
@@ -52,9 +52,9 @@ const DueDates = ({
   };
 
   return (
-    <div className="duedates-container">
+    <div className="fetchables-container">
       <h1>Due Dates</h1>
-      <div className="duedates-list">
+      <div className="fetchables-list">
         {docs.map((duedate, index) => (
           <>
             {eventType === "view" ? (

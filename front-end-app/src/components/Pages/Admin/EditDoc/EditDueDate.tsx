@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
-import DueDate from "../../DueDates/DueDate"; // Assume this component is similar to Announcement component
+import DueDate from "../../Fetchables/DueDates/DueDate"; // Assume this component is similar to Announcement component
 
 interface EditDueDateProps {
   _id: string;
